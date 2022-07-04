@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_tr')->unique();
             $table->string('name_en')->unique();
+            $table->foreignId('occupation_id')->nullable()->constrained();
         });
     }
 
