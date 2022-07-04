@@ -1,66 +1,303 @@
--- phpMyAdmin SQL Dump
--- version 5.1.1
--- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 04, 2022 at 01:45 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `test`
+-- Dumping data for table `location_types`
 --
 
--- --------------------------------------------------------
+INSERT INTO `location_types` (`id`, `name_tr`, `name_en`) VALUES
+(1, 'Şehir', 'Town'),
+(2, 'Kaza', 'District'),
+(3, 'Mahalle', 'Neighborhood '),
+(4, 'Neverye', 'Parish'),
+(5, 'Varoş', 'Suburb'),
+(6, 'Köy', 'Village'),
+(7, 'Çiftlik', 'Farm'),
+(8, 'Diğer', 'Other');
 
 --
--- Table structure for table `failed_jobs`
+-- Dumping data for table `location_names`
 --
 
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
+INSERT INTO `location_names` (`id`, `name`, `location_type_id`, `location_name_id`) VALUES
+(1, 'Niş', 2, NULL),
+(2, 'Niş', 1, 1),
+(3, 'Niş', 5, 2),
+(4, 'Hünkar', 3, 2),
+(5, 'Defterdar', 3, 2),
+(6, 'Taşköprü', 3, 2),
+(7, 'Hacı Bekir', 3, 2),
+(8, 'Rizaiyye', 3, 2),
+(9, 'Belgrad', 3, 2),
+(10, 'Cedide', 3, 2),
+(11, 'Yahyapaşa', 3, 2),
+(12, 'Papaz Kosto', 3, 2),
+(13, 'Papaz İstanko', 3, 2),
+(14, 'Papaz Gorki', 3, 2),
+(15, 'Papaz Yone', 3, 2),
+(16, 'Papaz Naon', 4, 3),
+(17, 'Papaz Yovan Kefere', 4, 3),
+(18, 'Papaz Mito', 4, 3),
+(19, 'Papaz Yovan', 4, 3),
+(20, 'Yagodin', 3, 2),
+(21, 'Kebir-i Çinçar', 3, 2),
+(22, 'Sağir-i Çinçar', 3, 2),
+(23, 'Kebir-i Koptiyan', 3, 2),
+(24, 'Sağir-i Koptiyan', 3, 2),
+(25, 'Mitçe Konluğu', 8, 2),
+(26, 'At Pazarında Dükkanlar', 8, 2),
+(27, 'Acı Goko Konluğu', 8, 2),
+(28, 'Kojuşko Asıyab', 8, 2),
+(29, 'Şehirköy', 1, 1);
 
 --
--- Table structure for table `households`
+-- Dumping data for table `occupations`
 --
+INSERT INTO `occupations` (`id`, `name_tr`, `name_en`, `occupation_id`) VALUES
+(1, 'Esnaf', 'Craftsman', NULL),
+(2, 'Görevli', 'Official', NULL),
+(3, 'Ziraat', 'Agriculture', NULL),
+(4, 'Mesleksiz', 'Unemployed', NULL),
+(5, 'Ticaret', 'Trade', NULL),
+(6, 'Askeri Alanda Hizmet Veren Görevliler', 'Military Officials', 2),
+(7, 'Dini Alanda Hizmet Veren Görevliler', 'Religious Officials', 2),
+(8, 'İctimai ve İdari Alanda Hizmet Veren Görevliler', 'Administrative and Social Officials', 2),
+(9, 'İşçi', 'Worker', NULL),
+(10, 'Bilinmeyen', 'Unknown', NULL),
+(11, 'Deriden Mal Ureten ve Satan Esnaf', 'Leather Related Craftsmen', 1),
+(12, 'Metaldan Mal Üreten ve Satan Esnaf', 'Metal Related Craftsmen', 1),
+(13, 'Dokumacılık Alanındaki Meslekler', 'Textile Related Craftsmen', 1),
+(14, 'Kumaştan Mal Üreten ve Satan Esnaf', 'Craftsmen Working with Cloth', 1),
+(15, 'Diğer Mal Üreten ve Satan Esnaf', 'Craftsmen Producing and Selling Other Products', 1),
+(16, 'Çeşitli Hizmetleri Yerine Getirenler', 'Service Related Craftsmen', 1),
+(17, 'Yiyecek Maddeleri Üreten ve Satan Esnaf', 'Craftsmen Producing and Selling Food', 1),
+(18, 'Taşımacılık Alanındaki Meslekler', 'Transport Related Occupations', 1),
+(19, 'Askeri Mülazım', 'Military Lieutenant', 6),
+(20, 'Asakir-i Nizamiyye', 'Nizam-i Cedid Army', 6),
+(21, 'Binbaşı', 'Lieutenant Commander', 6),
+(22, 'İşkenci Süvar', 'Ishkenci Cavarly', 6),
+(23, 'Kır Bölük Başı', 'Military Company Commander', 6),
+(24, 'Sekban', 'Mercenary Soldier', 6),
+(25, 'Sipahi', 'Cavarlyman', 6),
+(26, 'Sipahi Kulağası', 'Cavarly Adjuctant Major', 6),
+(27, 'Zabit', 'Officer', 6),
+(28, 'Zabit Sekban', 'Mercenary Officer', 6),
+(29, 'Zabit Sipahi', 'Cavarly Officer', 6),
+(30, 'Yüzbaşı', 'Military Captain', 6),
+(142, 'Topcu', 'Artilleryman', 6),
+(143, 'Topcu Onbasi', 'Artillery Corporal', 6),
+(144, 'Topcu Cavusu', 'Artillery Sergeant', 6),
+(145, 'Topcu Mülazim', 'Artillery Lieutenant', 6),
+(146, 'Topçu Yüzbaşı', 'Artillery Captain', 6),
+(147, 'Berber', 'Barber', 16),
+(148, 'Çalgıcı', 'Musician', 16),
+(149, 'Dellal', 'Town Crier', 16),
+(150, 'Hamamcı', 'Bath Attendant', 16),
+(151, 'Hamam Naziri', 'Bath Sipervisor', 16),
+(152, 'Hancı', 'Innkeeper', 16),
+(153, 'Kahveci', 'Coffeehouse Keeper', 16),
+(154, 'Kahveci Tabi', 'Coffeehouse Assistant', 16),
+(155, 'Meyhaneci', 'Drink House Keeper', 16),
+(156, 'Seyis', 'Stableman', 16),
+(157, 'Şarkıcı', 'Singer', 16),
+(158, 'Dülger', 'Carpenter', 15),
+(159, 'Debbağ', 'Tanner', 11),
+(160, 'Göncü', 'Leather Seller', 11),
+(161, 'Kürkçü', 'Furrier', 11),
+(162, 'Saraç', 'Saddler', 11),
+(163, 'Semerci', 'Pack Saddler', 11),
+(164, 'Yemenici', 'Leather Shoe Maker', 11),
+(165, 'Kalpakçı', 'Fur Cap Maker', 11),
+(166, 'Çömlekçi', 'Potter', 15),
+(167, 'Çubukçu', 'Tobacco Pipe Maker', 15),
+(168, 'Doğramacı', 'Woodworker', 15),
+(169, 'Hasırcı', 'Caner', 15),
+(170, 'İpçi', 'Ropemaker', 15),
+(171, 'Kiremitçi', 'Tiler', 15),
+(172, 'Koltukçu', 'Upholsterer', 15),
+(173, 'Lulacı', 'Pipe Maker', 15),
+(174, 'Saatçı', 'Watchmaker', 15),
+(175, 'Tüfekçi', 'Gunsmith', 15),
+(176, 'Mumcu', 'Candle Maker', 15),
+(177, 'Derviş', 'Dervish', 7),
+(178, 'İmam', 'Imam', 7),
+(179, 'Muezzin', 'Muezzin', 7),
+(180, 'Müderris', 'Teacher', 7),
+(181, 'Mütevelli', 'Overseer', 7),
+(182, 'Şeyh', 'Sheikh', 7),
+(183, 'Talebe-i Ulum', 'Student', 7),
+(184, 'Papas', 'Priest', 7),
+(185, 'Müftü', 'Mufti', 7),
+(186, 'Abacı', 'Aba Maker', 13),
+(187, 'Boyacı', 'Dyer', 13),
+(188, 'Hallaç', 'Cotton Fluffer ', 13),
+(189, 'Kazzaz', 'Silk Seller', 13),
+(190, 'Keçeci', 'Felt Maker', 13),
+(191, 'Mutaf', 'Weaver of Goats Hair', 13),
+(192, 'Alil', 'Sick', 4),
+(193, 'İhtiyar', 'Old', 4),
+(194, 'İhtiyar ve Alil', 'Old and Sick', 4),
+(195, 'Dülkar', 'Widdow', 4),
+(196, 'Nisa Taifesinden', 'Woman', 4),
+(197, 'Mecnun', 'Mentally Ill', 4),
+(198, 'Fukara', 'Poor Person', 4),
+(199, 'Yetim', 'Orphan', 4),
+(200, 'Salcı', 'Orphan (?)', 4),
+(201, 'Bakıcı', 'Watcher', 8),
+(202, 'Çocuklar Okutma', 'Children Teacher', 8),
+(203, 'Gezginci', 'Guard', 8),
+(204, 'Katib', 'Scribe', 8),
+(205, 'Kavas', 'Armed Constable', 8),
+(206, 'Kayyum', 'Mosque Caretaker', 8),
+(207, 'Mezarcı', 'Gravedigger', 8),
+(208, 'Muhtar', 'Neighborhood Representative', 8),
+(209, 'Muhzır', 'Bailiff', 8),
+(210, 'Nüfüs Naziri', 'Civil Registry Officer', 8),
+(211, 'Ziraat Müdürü', 'Agriculture Director', 8),
+(212, 'Bahçevan', 'Gardener', 9),
+(213, 'Çapacı', 'Hoer (agriculture)', 9),
+(214, 'Çoban', 'Shepherd', 9),
+(215, 'Irgat', 'Farm Labourer', 9),
+(216, 'Hizmetkar', 'Servant', 9),
+(217, 'Dikici', 'Stitcher', 14),
+(218, 'Papuççu', 'Shoe Maker', 14),
+(219, 'Terzi', 'Tailor', 14),
+(220, 'Yorgancı', 'Quilt Maker', 14),
+(221, 'Bıçakçı', 'Knife Maker', 12),
+(222, 'Dökmeci', 'Molder', 12),
+(223, 'Kalaycı', 'Tinsmith', 12),
+(224, 'Kazancı', 'Boilersmith', 12),
+(225, 'Kuyumcu', 'Goldsmith', 12),
+(226, 'Mineci', 'Enamelist', 12),
+(227, 'Nalbant', 'Horseshoer', 12),
+(228, 'Kantarcı', 'Scaler', 12),
+(229, 'Demirci', 'Ironsmith', 12),
+(230, 'Aktar Ticareti', 'Spice Seller', 5),
+(231, 'Tuz Ticareti', 'Salt Seller', 5),
+(232, 'Eskici', 'Junk Dealer', 5),
+(233, 'Duhancı', 'Tobbacco Seller', 5),
+(234, 'Oduncu', 'Lumberjack', 5),
+(235, 'Avrupa Ticareti', 'European Merchant', 5),
+(236, 'Erbab-ı Ticaret', 'Merchant', 5),
+(237, 'Ayak Ticareti', 'Street Merchant', 5),
+(238, 'Bezirgan', 'Wholesale Merchant', 5),
+(239, 'Araba Kiracı', 'Dray Driver', 18),
+(240, 'Kiracı', 'Driver', 18),
+(241, 'Koçucu', 'Coach Driver', 18),
+(242, 'Aşçı', 'Cook', 17),
+(243, 'Bakkal', 'Grocer', 17),
+(244, 'Ekmekçi', 'Bread Maker', 17),
+(245, 'Kadayifçi', 'Dessert Maker', 17),
+(246, 'Kasap', 'Butcher', 17),
+(247, 'Simitçi', 'Bagel Seller', 17),
+(248, 'Yemişçi', 'Dried Fruit Seller', 17),
+(249, 'Ashab-ı Alaka', 'Notable', 3),
+(250, 'Erbab-ı Ziraat', 'Landowner', 3),
+(251, 'Rençber', 'Farmer', 3);
 
-CREATE TABLE `households` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `forname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `surname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `member_type_id` bigint(20) UNSIGNED NOT NULL,
-  `location_name_id` bigint(20) UNSIGNED NOT NULL,
-  `number` int(11) NOT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `archive_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `page` int(11) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+--
+-- Dumping data for table `taxes`
+--
+INSERT INTO `taxes` (`id`, `name_tr`, `name_en`) VALUES
+(1, 'vergi-i mahsuse', 'general tax'),
+(2, 'öşür (tarla)', 'tithe (field)'),
+(3, 'bedel-i öşr-i bostan', 'tithe (garden)'),
+(4, 'bedel-i öşr-i kovan', 'tithe (beehive)'),
+(5, 'resm-i bağ', 'vineyard tax'),
+(6, 'resm-i asıyab', 'mill tax'),
+(7, 'resm-i adet-i ağnam', 'sheep tax'),
+(8, 'cizye', 'poll tax (jizya)');
+
+--
+-- Dumping data for table `lands`
+--
+INSERT INTO `lands` (`id`, `name_tr`, `name_en`) VALUES
+(1, 'Gayri Mezru Tarla', 'Uncultivated Field'),
+(2, 'Mezru Tarla', 'Cultivated Field'),
+(3, 'İcar ile Verildiği Tarla', 'Field Given for Rent'),
+(4, 'Müstecir Mezru Tarla', 'Field Taken for Rent'),
+(5, 'Sebze Bahçesi', 'Vegetables Garden'),
+(6, 'Bağ', 'Vineyard'),
+(7, 'Çayır', 'Pasture'),
+(8, 'Çiftlik', 'Farm');
+
+--
+-- Dumping data for table `real_estates`
+--
+INSERT INTO `real_estates` (`id`, `name_tr`, `name_en`) VALUES
+(1, 'Asiyab', 'Mill'),
+(2, 'Hamam', 'Bathhouse'),
+(3, 'Han', 'Inn'),
+(4, 'Kahvehane', 'Coffee House'),
+(5, 'Meyhane', 'Drink House'),
+(6, 'Gümrükhane', 'Customs Office'),
+(7, 'Kirahane', 'Renthouse'),
+(8, 'Dükkan', 'Store'),
+(9, 'Mahzan', 'Warehouse');
+
+--
+-- Dumping data for table `livestock`
+--
+INSERT INTO `livestocks` (`id`, `name_tr`, `name_en`) VALUES
+(1, 'Arı Kovanı - ras', 'Beehive- head'),
+(2, 'Koyun - sağman', 'Sheep - milking'),
+(3, 'Koyun - kuzu furuht', 'Sheep - lamb for sale'),
+(4, 'Koyun - kısır', 'Sheep - milkless'),
+(5, 'Koyun - kuzu', 'Sheep - lamb'),
+(6, 'Keçi - sağman', 'Goat - milking'),
+(7, 'Keçi - otlak furuht', 'Goat - kid for sale'),
+(8, 'Keçi - kısır', 'Goat - milkless'),
+(9, 'Keçi - otlak', 'Goat - kid'),
+(10, 'Bargir', 'Mule'),
+(11, 'At - asab', 'Horse - stallion'),
+(12, 'At - kısrak', 'Horse - mare'),
+(13, 'At - kısrak tay', 'Horse - little mare'),
+(14, 'At - bebek', 'Horse - baby'),
+(15, 'Merkeb - erkek', 'Donkey - male'),
+(16, 'Merkeb - dişi', 'Donkey - female'),
+(17, 'Öküz', 'Ox'),
+(18, 'Manda - sağman', 'Buffalo - milking'),
+(19, 'Manda - dana', 'Buffalo - calf'),
+(20, 'Manda - kısır', 'Buffalo - milkless'),
+(21, 'Manda - erkek', 'Buffalo - male'),
+(22, 'Manda - buzağı, erkek', 'Buffalo - kid, male'),
+(23, 'Manda - buzağı, dişi', 'Buffalo - kid, female'),
+(24, 'İnek - sağman', 'Cow - milking'),
+(25, 'İnek - kısır', 'Cow - milkless'),
+(26, 'İnek - buzağı, erkek', 'Cow - kid, male'),
+(27, 'İnek - buzağı, dişi', 'Cow - kid, female'),
+(28, 'İnek - tosun', 'Cow - bullock'),
+(29, 'İnek - dana', 'Cow - calf'),
+(30, 'Arı Kovanı - kıta', 'Beehive - piece'),
+(31, 'Arı Kovanı - bahçe', 'Beehive - garden');
+
+
+--
+-- Dumping data for table `member_types`
+--
+INSERT INTO `member_types` (`id`, `name_tr`, `name_en`) VALUES
+(1, 'hane reisi', 'head of household'),
+(2, 'valide', 'mother'),
+(3, 'halile', 'wife'),
+(4, 'kardeş', 'brother'),
+(5, 'oğul', 'son'),
+(6, 'kemin', 'kemin'),
+(7, 'hemşire', 'sister'),
+(8, 'yeğen', 'nephew'),
+(9, 'kayınvalide', 'mother-in-law'),
+(10, 'öge oğul', 'adopted son'),
+(11, 'peder', 'father'),
+(12, 'hanesinde sakin', 'tenant'),
+(13, 'öge kiz', 'adopted dauther'),
+(14, 'akraba', 'cousin'),
+(15, 'oğlunun halilesi', 'sons wife'),
+(16, 'yetim', 'orphan'),
+(17, 'torun', 'grand son'),
+(18, 'şerik', 'coworker'),
+(19, 'damat', 'son-in-law'),
+(20, 'kayın', 'cousin-in-law'),
+(21, 'köle', 'slave');
 
 --
 -- Dumping data for table `households`
 --
-
 INSERT INTO `households` (`id`, `forname`, `surname`, `member_type_id`, `location_name_id`, `number`, `notes`, `archive_code`, `page`, `created_at`, `updated_at`) VALUES
 (1, 'Ahmed ve Hüseyyin ve Ali', 'Abdürrahman Ağa', 1, 5, 1, 'Alam', 'ML_VRD_TMT_d11036', 0, NULL, NULL),
 (2, 'Ahmed ', 'Osman', 1, 5, 2, '', 'ML_VRD_TMT_d11036', 0, NULL, NULL),
@@ -1551,29 +1788,9 @@ INSERT INTO `households` (`id`, `forname`, `surname`, `member_type_id`, `locatio
 (1485, NULL, NULL, 4, 10, 12, NULL, 'ML.VRD.TMT.d11059', 0, NULL, NULL),
 (1486, NULL, NULL, 4, 10, 24, NULL, 'ML.VRD.TMT.d11059', 0, NULL, NULL);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `household_land`
---
-
-CREATE TABLE `household_land` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `land_id` bigint(20) UNSIGNED NOT NULL,
-  `household_id` bigint(20) UNSIGNED NOT NULL,
-  `area` int(11) DEFAULT NULL,
-  `income` int(11) DEFAULT NULL,
-  `rent` int(11) DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `household_land`
 --
-
 INSERT INTO `household_land` (`id`, `land_id`, `household_id`, `area`, `income`, `rent`, `description`, `location`, `created_at`, `updated_at`) VALUES
 (1, 1, 1160, 244, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 1, 326, 120, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -2964,26 +3181,9 @@ INSERT INTO `household_land` (`id`, `land_id`, `household_id`, `area`, `income`,
 (1386, 8, 14, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (1387, 8, 14, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `household_livestock`
---
-
-CREATE TABLE `household_livestock` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `livestock_id` bigint(20) UNSIGNED NOT NULL,
-  `household_id` bigint(20) UNSIGNED NOT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `income` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `household_livestock`
 --
-
 INSERT INTO `household_livestock` (`id`, `livestock_id`, `household_id`, `quantity`, `income`, `created_at`, `updated_at`) VALUES
 (1, 10, 1, 3, NULL, NULL, NULL),
 (2, 10, 5, 1, NULL, NULL, NULL),
@@ -3785,26 +3985,9 @@ INSERT INTO `household_livestock` (`id`, `livestock_id`, `household_id`, `quanti
 (798, 31, 1176, 1, 175, NULL, NULL),
 (799, 31, 1176, 1, 100, NULL, NULL);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `household_occupation`
---
-
-CREATE TABLE `household_occupation` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `occupation_id` bigint(20) UNSIGNED NOT NULL,
-  `household_id` bigint(20) UNSIGNED NOT NULL,
-  `income` int(11) DEFAULT NULL,
-  `type` enum('kalfa','usta','cirak') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 --
 -- Dumping data for table `household_occupation`
 --
-
 INSERT INTO `household_occupation` (`id`, `occupation_id`, `household_id`, `income`, `type`, `created_at`, `updated_at`) VALUES
 (1, 249, 1, 0, NULL, NULL, NULL),
 (2, 159, 2, 0, NULL, NULL, NULL),
@@ -5381,28 +5564,10 @@ INSERT INTO `household_occupation` (`id`, `occupation_id`, `household_id`, `inco
 (1572, 142, 1485, 120, NULL, NULL, NULL),
 (1573, 142, 1486, 120, NULL, NULL, NULL);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `household_real_estate`
---
-
-CREATE TABLE `household_real_estate` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `real_estate_id` bigint(20) UNSIGNED NOT NULL,
-  `household_id` bigint(20) UNSIGNED NOT NULL,
-  `quantity` int(11) DEFAULT NULL,
-  `income` int(11) DEFAULT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `household_real_estate`
 --
-
 INSERT INTO `household_real_estate` (`id`, `real_estate_id`, `household_id`, `quantity`, `income`, `location`, `description`, `created_at`, `updated_at`) VALUES
 (1, 1, 715, 1, 500, 'zid düşnük', '', NULL, NULL),
 (2, 1, 1153, 1, 200, 'Milkofça', '3 taş 0.5 hisse', NULL, NULL),
@@ -5951,25 +6116,10 @@ INSERT INTO `household_real_estate` (`id`, `real_estate_id`, `household_id`, `qu
 (545, 5, 535, 2, 130, 'Palilula Çiftliği', '', NULL, NULL),
 (546, 6, 558, 1, 360, '', '', NULL, NULL);
 
--- --------------------------------------------------------
 
 --
--- Table structure for table `household_tax`
+-- Dumping data for table `household_taxes`
 --
-
-CREATE TABLE `household_tax` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tax_id` bigint(20) UNSIGNED NOT NULL,
-  `household_id` bigint(20) UNSIGNED NOT NULL,
-  `amount` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `household_tax`
---
-
 INSERT INTO `household_tax` (`id`, `tax_id`, `household_id`, `amount`, `created_at`, `updated_at`) VALUES
 (1, 1, 2, 29, NULL, NULL),
 (2, 5, 2, 6, NULL, NULL),
@@ -8231,813 +8381,3 @@ INSERT INTO `household_tax` (`id`, `tax_id`, `household_id`, `amount`, `created_
 (2257, 8, 1445, 30, NULL, NULL),
 (2258, 8, 1446, 30, NULL, NULL),
 (2259, 8, 1447, 30, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `lands`
---
-
-CREATE TABLE `lands` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name_tr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `lands`
---
-
-INSERT INTO `lands` (`id`, `name_tr`, `name_en`) VALUES
-(1, 'Gayri Mezru Tarla', 'Uncultivated Field'),
-(2, 'Mezru Tarla', 'Cultivated Field'),
-(3, 'İcar ile Verildiği Tarla', 'Field Given for Rent'),
-(4, 'Müstecir Mezru Tarla', 'Field Taken for Rent'),
-(5, 'Sebze Bahçesi', 'Vegetables Garden'),
-(6, 'Bağ', 'Vineyard'),
-(7, 'Çayır', 'Pasture'),
-(8, 'Çiftlik', 'Farm');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `livestocks`
---
-
-CREATE TABLE `livestocks` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name_tr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `livestocks`
---
-
-INSERT INTO `livestocks` (`id`, `name_tr`, `name_en`) VALUES
-(1, 'Arı Kovanı - ras', 'Beehive- head'),
-(2, 'Koyun - sağman', 'Sheep - milking'),
-(3, 'Koyun - kuzu furuht', 'Sheep - lamb for sale'),
-(4, 'Koyun - kısır', 'Sheep - milkless'),
-(5, 'Koyun - kuzu', 'Sheep - lamb'),
-(6, 'Keçi - sağman', 'Goat - milking'),
-(7, 'Keçi - otlak furuht', 'Goat - kid for sale'),
-(8, 'Keçi - kısır', 'Goat - milkless'),
-(9, 'Keçi - otlak', 'Goat - kid'),
-(10, 'Bargir', 'Mule'),
-(11, 'At - asab', 'Horse - stallion'),
-(12, 'At - kısrak', 'Horse - mare'),
-(13, 'At - kısrak tay', 'Horse - little mare'),
-(14, 'At - bebek', 'Horse - baby'),
-(15, 'Merkeb - erkek', 'Donkey - male'),
-(16, 'Merkeb - dişi', 'Donkey - female'),
-(17, 'Öküz', 'Ox'),
-(18, 'Manda - sağman', 'Buffalo - milking'),
-(19, 'Manda - dana', 'Buffalo - calf'),
-(20, 'Manda - kısır', 'Buffalo - milkless'),
-(21, 'Manda - erkek', 'Buffalo - male'),
-(22, 'Manda - buzağı, erkek', 'Buffalo - kid, male'),
-(23, 'Manda - buzağı, dişi', 'Buffalo - kid, female'),
-(24, 'İnek - sağman', 'Cow - milking'),
-(25, 'İnek - kısır', 'Cow - milkless'),
-(26, 'İnek - buzağı, erkek', 'Cow - kid, male'),
-(27, 'İnek - buzağı, dişi', 'Cow - kid, female'),
-(28, 'İnek - tosun', 'Cow - bullock'),
-(29, 'İnek - dana', 'Cow - calf'),
-(30, 'Arı Kovanı - kıta', 'Beehive - piece'),
-(31, 'Arı Kovanı - bahçe', 'Beehive - garden');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `location_names`
---
-
-CREATE TABLE `location_names` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `location_type_id` bigint(20) UNSIGNED NOT NULL,
-  `location_name_id` bigint(20) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `location_names`
---
-
-INSERT INTO `location_names` (`id`, `name`, `location_type_id`, `location_name_id`) VALUES
-(1, 'Niş', 2, NULL),
-(2, 'Niş', 1, 1),
-(3, 'Niş', 5, 2),
-(4, 'Hünkar', 3, 2),
-(5, 'Defterdar', 3, 2),
-(6, 'Taşköprü', 3, 2),
-(7, 'Hacı Bekir', 3, 2),
-(8, 'Rizaiyye', 3, 2),
-(9, 'Belgrad', 3, 2),
-(10, 'Cedide', 3, 2),
-(11, 'Yahyapaşa', 3, 2),
-(12, 'Papaz Kosto', 3, 2),
-(13, 'Papaz İstanko', 3, 2),
-(14, 'Papaz Gorki', 3, 2),
-(15, 'Papaz Yone', 3, 2),
-(16, 'Papaz Naon', 4, 3),
-(17, 'Papaz Yovan Kefere', 4, 3),
-(18, 'Papaz Mito', 4, 3),
-(19, 'Papaz Yovan', 4, 3),
-(20, 'Yagodin', 3, 2),
-(21, 'Kebir-i Çinçar', 3, 2),
-(22, 'Sağir-i Çinçar', 3, 2),
-(23, 'Kebir-i Koptiyan', 3, 2),
-(24, 'Sağir-i Koptiyan', 3, 2),
-(25, 'Mitçe Konluğu', 8, 2),
-(26, 'At Pazarında Dükkanlar', 8, 2),
-(27, 'Acı Goko Konluğu', 8, 2),
-(28, 'Kojuşko Asıyab', 8, 2),
-(29, 'Şehirköy', 1, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `location_types`
---
-
-CREATE TABLE `location_types` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name_tr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `location_types`
---
-
-INSERT INTO `location_types` (`id`, `name_tr`, `name_en`) VALUES
-(1, 'Şehir', 'Town'),
-(2, 'Kaza', 'District'),
-(3, 'Mahalle', 'Neighborhood '),
-(4, 'Neverye', 'Parish'),
-(5, 'Varoş', 'Suburb'),
-(6, 'Köy', 'Village'),
-(7, 'Çiftlik', 'Farm'),
-(8, 'Diğer', 'Other');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `member_types`
---
-
-CREATE TABLE `member_types` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name_tr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `member_types`
---
-
-INSERT INTO `member_types` (`id`, `name_tr`, `name_en`) VALUES
-(1, 'hane reisi', 'head of household'),
-(2, 'valide', 'mother'),
-(3, 'halile', 'wife'),
-(4, 'kardeş', 'brother'),
-(5, 'oğul', 'son'),
-(6, 'kemin', 'kemin'),
-(7, 'hemşire', 'sister'),
-(8, 'yeğen', 'nephew'),
-(9, 'kayınvalide', 'mother-in-law'),
-(10, 'öge oğul', 'adopted son'),
-(11, 'peder', 'father'),
-(12, 'hanesinde sakin', 'tenant'),
-(13, 'öge kiz', 'adopted dauther'),
-(14, 'akraba', 'cousin'),
-(15, 'oğlunun halilesi', 'sons wife'),
-(16, 'yetim', 'orphan'),
-(17, 'torun', 'grand son'),
-(18, 'şerik', 'coworker'),
-(19, 'damat', 'son-in-law'),
-(20, 'kayın', 'cousin-in-law'),
-(21, 'köle', 'slave');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `migrations`
---
-
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2022_07_03_110500_create_location_types_table', 1),
-(6, '2022_07_03_110501_create_location_names_table', 1),
-(7, '2022_07_03_110532_create_member_types_table', 1),
-(8, '2022_07_03_110603_create_households_table', 1),
-(9, '2022_07_03_120049_create_occupations_table', 1),
-(10, '2022_07_03_134412_create_lands_table', 1),
-(11, '2022_07_03_134542_create_livestocks_table', 1),
-(12, '2022_07_03_134609_create_taxes_table', 1),
-(13, '2022_07_03_134636_create_real_estates_table', 1),
-(14, '2022_07_03_134639_create_household_occupation_table', 1),
-(15, '2022_07_03_134640_create_household_land_table', 1),
-(16, '2022_07_03_134718_create_household_livestock_table', 1),
-(17, '2022_07_03_134737_create_household_real_estate_table', 1),
-(18, '2022_07_03_134746_create_household_tax_table', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `occupations`
---
-
-CREATE TABLE `occupations` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name_tr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `occupation_id` bigint(20) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `occupations`
---
-
-INSERT INTO `occupations` (`id`, `name_tr`, `name_en`, `occupation_id`) VALUES
-(1, 'Esnaf', 'Craftsman', NULL),
-(2, 'Görevli', 'Official', NULL),
-(3, 'Ziraat', 'Agriculture', NULL),
-(4, 'Mesleksiz', 'Unemployed', NULL),
-(5, 'Ticaret', 'Trade', NULL),
-(6, 'Askeri Alanda Hizmet Veren Görevliler', 'Military Officials', 2),
-(7, 'Dini Alanda Hizmet Veren Görevliler', 'Religious Officials', 2),
-(8, 'İctimai ve İdari Alanda Hizmet Veren Görevliler', 'Administrative and Social Officials', 2),
-(9, 'İşçi', 'Worker', NULL),
-(10, 'Bilinmeyen', 'Unknown', NULL),
-(11, 'Deriden Mal Ureten ve Satan Esnaf', 'Leather Related Craftsmen', 1),
-(12, 'Metaldan Mal Üreten ve Satan Esnaf', 'Metal Related Craftsmen', 1),
-(13, 'Dokumacılık Alanındaki Meslekler', 'Textile Related Craftsmen', 1),
-(14, 'Kumaştan Mal Üreten ve Satan Esnaf', 'Craftsmen Working with Cloth', 1),
-(15, 'Diğer Mal Üreten ve Satan Esnaf', 'Craftsmen Producing and Selling Other Products', 1),
-(16, 'Çeşitli Hizmetleri Yerine Getirenler', 'Service Related Craftsmen', 1),
-(17, 'Yiyecek Maddeleri Üreten ve Satan Esnaf', 'Craftsmen Producing and Selling Food', 1),
-(18, 'Taşımacılık Alanındaki Meslekler', 'Transport Related Occupations', 1),
-(19, 'Askeri Mülazım', 'Military Lieutenant', 6),
-(20, 'Asakir-i Nizamiyye', 'Nizam-i Cedid Army', 6),
-(21, 'Binbaşı', 'Lieutenant Commander', 6),
-(22, 'İşkenci Süvar', 'Ishkenci Cavarly', 6),
-(23, 'Kır Bölük Başı', 'Military Company Commander', 6),
-(24, 'Sekban', 'Mercenary Soldier', 6),
-(25, 'Sipahi', 'Cavarlyman', 6),
-(26, 'Sipahi Kulağası', 'Cavarly Adjuctant Major', 6),
-(27, 'Zabit', 'Officer', 6),
-(28, 'Zabit Sekban', 'Mercenary Officer', 6),
-(29, 'Zabit Sipahi', 'Cavarly Officer', 6),
-(30, 'Yüzbaşı', 'Military Captain', 6),
-(142, 'Topcu', 'Artilleryman', 6),
-(143, 'Topcu Onbasi', 'Artillery Corporal', 6),
-(144, 'Topcu Cavusu', 'Artillery Sergeant', 6),
-(145, 'Topcu Mülazim', 'Artillery Lieutenant', 6),
-(146, 'Topçu Yüzbaşı', 'Artillery Captain', 6),
-(147, 'Berber', 'Barber', 16),
-(148, 'Çalgıcı', 'Musician', 16),
-(149, 'Dellal', 'Town Crier', 16),
-(150, 'Hamamcı', 'Bath Attendant', 16),
-(151, 'Hamam Naziri', 'Bath Sipervisor', 16),
-(152, 'Hancı', 'Innkeeper', 16),
-(153, 'Kahveci', 'Coffeehouse Keeper', 16),
-(154, 'Kahveci Tabi', 'Coffeehouse Assistant', 16),
-(155, 'Meyhaneci', 'Drink House Keeper', 16),
-(156, 'Seyis', 'Stableman', 16),
-(157, 'Şarkıcı', 'Singer', 16),
-(158, 'Dülger', 'Carpenter', 15),
-(159, 'Debbağ', 'Tanner', 11),
-(160, 'Göncü', 'Leather Seller', 11),
-(161, 'Kürkçü', 'Furrier', 11),
-(162, 'Saraç', 'Saddler', 11),
-(163, 'Semerci', 'Pack Saddler', 11),
-(164, 'Yemenici', 'Leather Shoe Maker', 11),
-(165, 'Kalpakçı', 'Fur Cap Maker', 11),
-(166, 'Çömlekçi', 'Potter', 15),
-(167, 'Çubukçu', 'Tobacco Pipe Maker', 15),
-(168, 'Doğramacı', 'Woodworker', 15),
-(169, 'Hasırcı', 'Caner', 15),
-(170, 'İpçi', 'Ropemaker', 15),
-(171, 'Kiremitçi', 'Tiler', 15),
-(172, 'Koltukçu', 'Upholsterer', 15),
-(173, 'Lulacı', 'Pipe Maker', 15),
-(174, 'Saatçı', 'Watchmaker', 15),
-(175, 'Tüfekçi', 'Gunsmith', 15),
-(176, 'Mumcu', 'Candle Maker', 15),
-(177, 'Derviş', 'Dervish', 7),
-(178, 'İmam', 'Imam', 7),
-(179, 'Muezzin', 'Muezzin', 7),
-(180, 'Müderris', 'Teacher', 7),
-(181, 'Mütevelli', 'Overseer', 7),
-(182, 'Şeyh', 'Sheikh', 7),
-(183, 'Talebe-i Ulum', 'Student', 7),
-(184, 'Papas', 'Priest', 7),
-(185, 'Müftü', 'Mufti', 7),
-(186, 'Abacı', 'Aba Maker', 13),
-(187, 'Boyacı', 'Dyer', 13),
-(188, 'Hallaç', 'Cotton Fluffer ', 13),
-(189, 'Kazzaz', 'Silk Seller', 13),
-(190, 'Keçeci', 'Felt Maker', 13),
-(191, 'Mutaf', 'Weaver of Goats Hair', 13),
-(192, 'Alil', 'Sick', 4),
-(193, 'İhtiyar', 'Old', 4),
-(194, 'İhtiyar ve Alil', 'Old and Sick', 4),
-(195, 'Dülkar', 'Widdow', 4),
-(196, 'Nisa Taifesinden', 'Woman', 4),
-(197, 'Mecnun', 'Mentally Ill', 4),
-(198, 'Fukara', 'Poor Person', 4),
-(199, 'Yetim', 'Orphan', 4),
-(200, 'Salcı', 'Orphan (?)', 4),
-(201, 'Bakıcı', 'Watcher', 8),
-(202, 'Çocuklar Okutma', 'Children Teacher', 8),
-(203, 'Gezginci', 'Guard', 8),
-(204, 'Katib', 'Scribe', 8),
-(205, 'Kavas', 'Armed Constable', 8),
-(206, 'Kayyum', 'Mosque Caretaker', 8),
-(207, 'Mezarcı', 'Gravedigger', 8),
-(208, 'Muhtar', 'Neighborhood Representative', 8),
-(209, 'Muhzır', 'Bailiff', 8),
-(210, 'Nüfüs Naziri', 'Civil Registry Officer', 8),
-(211, 'Ziraat Müdürü', 'Agriculture Director', 8),
-(212, 'Bahçevan', 'Gardener', 9),
-(213, 'Çapacı', 'Hoer (agriculture)', 9),
-(214, 'Çoban', 'Shepherd', 9),
-(215, 'Irgat', 'Farm Labourer', 9),
-(216, 'Hizmetkar', 'Servant', 9),
-(217, 'Dikici', 'Stitcher', 14),
-(218, 'Papuççu', 'Shoe Maker', 14),
-(219, 'Terzi', 'Tailor', 14),
-(220, 'Yorgancı', 'Quilt Maker', 14),
-(221, 'Bıçakçı', 'Knife Maker', 12),
-(222, 'Dökmeci', 'Molder', 12),
-(223, 'Kalaycı', 'Tinsmith', 12),
-(224, 'Kazancı', 'Boilersmith', 12),
-(225, 'Kuyumcu', 'Goldsmith', 12),
-(226, 'Mineci', 'Enamelist', 12),
-(227, 'Nalbant', 'Horseshoer', 12),
-(228, 'Kantarcı', 'Scaler', 12),
-(229, 'Demirci', 'Ironsmith', 12),
-(230, 'Aktar Ticareti', 'Spice Seller', 5),
-(231, 'Tuz Ticareti', 'Salt Seller', 5),
-(232, 'Eskici', 'Junk Dealer', 5),
-(233, 'Duhancı', 'Tobbacco Seller', 5),
-(234, 'Oduncu', 'Lumberjack', 5),
-(235, 'Avrupa Ticareti', 'European Merchant', 5),
-(236, 'Erbab-ı Ticaret', 'Merchant', 5),
-(237, 'Ayak Ticareti', 'Street Merchant', 5),
-(238, 'Bezirgan', 'Wholesale Merchant', 5),
-(239, 'Araba Kiracı', 'Dray Driver', 18),
-(240, 'Kiracı', 'Driver', 18),
-(241, 'Koçucu', 'Coach Driver', 18),
-(242, 'Aşçı', 'Cook', 17),
-(243, 'Bakkal', 'Grocer', 17),
-(244, 'Ekmekçi', 'Bread Maker', 17),
-(245, 'Kadayifçi', 'Dessert Maker', 17),
-(246, 'Kasap', 'Butcher', 17),
-(247, 'Simitçi', 'Bagel Seller', 17),
-(248, 'Yemişçi', 'Dried Fruit Seller', 17),
-(249, 'Ashab-ı Alaka', 'Notable', 3),
-(250, 'Erbab-ı Ziraat', 'Landowner', 3),
-(251, 'Rençber', 'Farmer', 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personal_access_tokens`
---
-
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `real_estates`
---
-
-CREATE TABLE `real_estates` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name_tr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `real_estates`
---
-
-INSERT INTO `real_estates` (`id`, `name_tr`, `name_en`) VALUES
-(1, 'Asiyab', 'Mill'),
-(2, 'Hamam', 'Bathhouse'),
-(3, 'Han', 'Inn'),
-(4, 'Kahvehane', 'Coffee House'),
-(5, 'Meyhane', 'Drink House'),
-(6, 'Gümrükhane', 'Customs Office'),
-(7, 'Kirahane', 'Renthouse'),
-(8, 'Dükkan', 'Store'),
-(9, 'Mahzan', 'Warehouse');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `taxes`
---
-
-CREATE TABLE `taxes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name_tr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `taxes`
---
-
-INSERT INTO `taxes` (`id`, `name_tr`, `name_en`) VALUES
-(1, 'vergi-i mahsuse', 'general tax'),
-(2, 'öşür (tarla)', 'tithe (field)'),
-(3, 'bedel-i öşr-i bostan', 'tithe (garden)'),
-(4, 'bedel-i öşr-i kovan', 'tithe (beehive)'),
-(5, 'resm-i bağ', 'vineyard tax'),
-(6, 'resm-i asıyab', 'mill tax'),
-(7, 'resm-i adet-i ağnam', 'sheep tax'),
-(8, 'cizye', 'poll tax (jizya)');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
--- Indexes for table `households`
---
-ALTER TABLE `households`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `households_member_type_id_foreign` (`member_type_id`),
-  ADD KEY `households_location_name_id_foreign` (`location_name_id`);
-
---
--- Indexes for table `household_land`
---
-ALTER TABLE `household_land`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `household_land_land_id_foreign` (`land_id`),
-  ADD KEY `household_land_household_id_foreign` (`household_id`);
-
---
--- Indexes for table `household_livestock`
---
-ALTER TABLE `household_livestock`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `household_livestock_livestock_id_foreign` (`livestock_id`),
-  ADD KEY `household_livestock_household_id_foreign` (`household_id`);
-
---
--- Indexes for table `household_occupation`
---
-ALTER TABLE `household_occupation`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `household_occupation_occupation_id_foreign` (`occupation_id`),
-  ADD KEY `household_occupation_household_id_foreign` (`household_id`);
-
---
--- Indexes for table `household_real_estate`
---
-ALTER TABLE `household_real_estate`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `household_real_estate_real_estate_id_foreign` (`real_estate_id`),
-  ADD KEY `household_real_estate_household_id_foreign` (`household_id`);
-
---
--- Indexes for table `household_tax`
---
-ALTER TABLE `household_tax`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `household_tax_tax_id_foreign` (`tax_id`),
-  ADD KEY `household_tax_household_id_foreign` (`household_id`);
-
---
--- Indexes for table `lands`
---
-ALTER TABLE `lands`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `lands_name_tr_unique` (`name_tr`),
-  ADD UNIQUE KEY `lands_name_en_unique` (`name_en`);
-
---
--- Indexes for table `livestocks`
---
-ALTER TABLE `livestocks`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `livestocks_name_tr_unique` (`name_tr`),
-  ADD UNIQUE KEY `livestocks_name_en_unique` (`name_en`);
-
---
--- Indexes for table `location_names`
---
-ALTER TABLE `location_names`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `location_names_location_type_id_foreign` (`location_type_id`),
-  ADD KEY `location_names_location_name_id_foreign` (`location_name_id`);
-
---
--- Indexes for table `location_types`
---
-ALTER TABLE `location_types`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `location_types_name_tr_unique` (`name_tr`),
-  ADD UNIQUE KEY `location_types_name_en_unique` (`name_en`);
-
---
--- Indexes for table `member_types`
---
-ALTER TABLE `member_types`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `member_types_name_tr_unique` (`name_tr`),
-  ADD UNIQUE KEY `member_types_name_en_unique` (`name_en`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `occupations`
---
-ALTER TABLE `occupations`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `occupations_name_tr_unique` (`name_tr`),
-  ADD UNIQUE KEY `occupations_name_en_unique` (`name_en`),
-  ADD KEY `occupations_occupation_id_foreign` (`occupation_id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
-
---
--- Indexes for table `real_estates`
---
-ALTER TABLE `real_estates`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `real_estates_name_tr_unique` (`name_tr`),
-  ADD UNIQUE KEY `real_estates_name_en_unique` (`name_en`);
-
---
--- Indexes for table `taxes`
---
-ALTER TABLE `taxes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `taxes_name_tr_unique` (`name_tr`),
-  ADD UNIQUE KEY `taxes_name_en_unique` (`name_en`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `households`
---
-ALTER TABLE `households`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1487;
-
---
--- AUTO_INCREMENT for table `household_land`
---
-ALTER TABLE `household_land`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1388;
-
---
--- AUTO_INCREMENT for table `household_livestock`
---
-ALTER TABLE `household_livestock`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=800;
-
---
--- AUTO_INCREMENT for table `household_occupation`
---
-ALTER TABLE `household_occupation`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1574;
-
---
--- AUTO_INCREMENT for table `household_real_estate`
---
-ALTER TABLE `household_real_estate`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=547;
-
---
--- AUTO_INCREMENT for table `household_tax`
---
-ALTER TABLE `household_tax`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2260;
-
---
--- AUTO_INCREMENT for table `lands`
---
-ALTER TABLE `lands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `livestocks`
---
-ALTER TABLE `livestocks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT for table `location_names`
---
-ALTER TABLE `location_names`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- AUTO_INCREMENT for table `location_types`
---
-ALTER TABLE `location_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `member_types`
---
-ALTER TABLE `member_types`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `occupations`
---
-ALTER TABLE `occupations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=252;
-
---
--- AUTO_INCREMENT for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `real_estates`
---
-ALTER TABLE `real_estates`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `taxes`
---
-ALTER TABLE `taxes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `households`
---
-ALTER TABLE `households`
-  ADD CONSTRAINT `households_location_name_id_foreign` FOREIGN KEY (`location_name_id`) REFERENCES `location_names` (`id`),
-  ADD CONSTRAINT `households_member_type_id_foreign` FOREIGN KEY (`member_type_id`) REFERENCES `member_types` (`id`);
-
---
--- Constraints for table `household_land`
---
-ALTER TABLE `household_land`
-  ADD CONSTRAINT `household_land_household_id_foreign` FOREIGN KEY (`household_id`) REFERENCES `households` (`id`),
-  ADD CONSTRAINT `household_land_land_id_foreign` FOREIGN KEY (`land_id`) REFERENCES `lands` (`id`);
-
---
--- Constraints for table `household_livestock`
---
-ALTER TABLE `household_livestock`
-  ADD CONSTRAINT `household_livestock_household_id_foreign` FOREIGN KEY (`household_id`) REFERENCES `households` (`id`),
-  ADD CONSTRAINT `household_livestock_livestock_id_foreign` FOREIGN KEY (`livestock_id`) REFERENCES `livestocks` (`id`);
-
---
--- Constraints for table `household_occupation`
---
-ALTER TABLE `household_occupation`
-  ADD CONSTRAINT `household_occupation_household_id_foreign` FOREIGN KEY (`household_id`) REFERENCES `households` (`id`),
-  ADD CONSTRAINT `household_occupation_occupation_id_foreign` FOREIGN KEY (`occupation_id`) REFERENCES `occupations` (`id`);
-
---
--- Constraints for table `household_real_estate`
---
-ALTER TABLE `household_real_estate`
-  ADD CONSTRAINT `household_real_estate_household_id_foreign` FOREIGN KEY (`household_id`) REFERENCES `households` (`id`),
-  ADD CONSTRAINT `household_real_estate_real_estate_id_foreign` FOREIGN KEY (`real_estate_id`) REFERENCES `real_estates` (`id`);
-
---
--- Constraints for table `household_tax`
---
-ALTER TABLE `household_tax`
-  ADD CONSTRAINT `household_tax_household_id_foreign` FOREIGN KEY (`household_id`) REFERENCES `households` (`id`),
-  ADD CONSTRAINT `household_tax_tax_id_foreign` FOREIGN KEY (`tax_id`) REFERENCES `taxes` (`id`);
-
---
--- Constraints for table `location_names`
---
-ALTER TABLE `location_names`
-  ADD CONSTRAINT `location_names_location_name_id_foreign` FOREIGN KEY (`location_name_id`) REFERENCES `location_names` (`id`),
-  ADD CONSTRAINT `location_names_location_type_id_foreign` FOREIGN KEY (`location_type_id`) REFERENCES `location_types` (`id`);
-
---
--- Constraints for table `occupations`
---
-ALTER TABLE `occupations`
-  ADD CONSTRAINT `occupations_occupation_id_foreign` FOREIGN KEY (`occupation_id`) REFERENCES `occupations` (`id`);
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
