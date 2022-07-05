@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\LocationName;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
+use App\Http\Controllers\HouseholdController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home', [
+        'places' => LocationName::with('locationType')
+                    ->withCount(['households' => function (Builder $query) {
+                    $query->where('member_type_id', 1);
+                    }])->get()],
+        
+                );
 });
+
+Route::get('/households', [HouseholdController::class, 'index']);
+
+Route::get('/household/{id}', [HouseholdController::class, 'show']);

@@ -16,7 +16,8 @@ class LocationName extends Model
 
     public function locationType()
     {
-        return $this->belongsTo(LocationType::class);
+        return $this->belongsTo(LocationType::class)
+                    ;
     }
 
     public function households()
