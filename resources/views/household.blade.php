@@ -1,5 +1,5 @@
 <x-layout>
-    <table class="table-auto">
+    <table class="table-auto mx-auto">
         <tr class="bg-gray-300">
             <th class="border p-3">
                 Archive Code
@@ -31,16 +31,17 @@
                 {{ $household->page }}
             </td>
             <td class="border p-3">
-                {{ $household->locationName->name . " " . $household->locationName->locationType->name_en }}
+                {{ $household->locationName->name . " " 
+                . $household->locationName->locationType->name_en }}
             </td>
             <td class="border p-3">
                 {{ $household->number }}
             </td>
             <td class="border p-3">
-                {{ $household->surname }}
+                {{ $household->forname }}
             </td>
             <td class="border p-3">
-                {{ $household->forname }}
+                {{ $household->surname }}
             </td>
             <td class="border p-3">
                 {{ $household->memberType->name_en }}
@@ -222,4 +223,14 @@
         @endforeach
     @endif
     </table>
+    <div class="conatiner mx-auto p-4 flex justify-between">
+        <a href={{ "/household/$prevId" }} 
+           class="inline-block bg-blue-900 hover:bg-blue-600 text-white px-3 py-1 rounded">
+           <
+        </a>
+        <a href={{ "/household/$nextId" }} 
+           class="inline-block bg-blue-900 hover:bg-blue-600 text-white px-3 py-1 rounded">
+           >
+        </a>
+    </div>
 </x-layout>

@@ -29,7 +29,7 @@
     @foreach ($households as $household)
         <tr class="odd:bg-gray-100">
             <td class="border p-3">
-                <a href={{ 'household/' . $household->id }}"> 
+                <a href={{ 'household/' . $household->id }}> 
                 {{ $household->locationName->name }}
                 </a>
             </td>
