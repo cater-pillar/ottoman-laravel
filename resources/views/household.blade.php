@@ -223,14 +223,18 @@
         @endforeach
     @endif
     </table>
-    <div class="conatiner mx-auto p-4 flex justify-between">
+    <div class="container mx-auto p-4 relative">
+        @if ($prevId)
         <a href={{ "/household/$prevId" }} 
-           class="inline-block bg-blue-900 hover:bg-blue-600 text-white px-3 py-1 rounded">
-           <
-        </a>
+            class="inline-block bg-blue-900 hover:bg-blue-600 text-white px-3 py-1 rounded absolute left-0">
+            <
+         </a>    
+        @endif
+        @if ($nextId)
         <a href={{ "/household/$nextId" }} 
-           class="inline-block bg-blue-900 hover:bg-blue-600 text-white px-3 py-1 rounded">
-           >
-        </a>
+            class="inline-block bg-blue-900 hover:bg-blue-600 text-white px-3 py-1 rounded absolute right-0">
+            >
+         </a>    
+        @endif
     </div>
 </x-layout>

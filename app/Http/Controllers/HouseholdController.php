@@ -10,21 +10,20 @@ class HouseholdController extends Controller
     public function index() {
         return view('households', [
             'households' => Household::with('memberType', 'locationName.locationType')
-                                      ->limit(1000)->get()]);
+                                      ->limit(1000)->paginate(50)->withQueryString()]);
     }
 
     public function show($id) {
 
-        $householdIds = cache()->rememberForever('householdIds', function() {
-            return Household::pluck('id')->toArray();
-        });
-
-        $prevId = $householdIds[array_search($id - 1, $householdIds)];
-        $nextId = $householdIds[array_search($id + 1, $householdIds)];
-
+        $household = Household::find($id);
+        
+        $prevId = $household->previous();
+        if($prevId) {$prevId = $prevId->id;}
+        $nextId = $household->next();
+        if($nextId) {$nextId = $nextId->id;}
         return view('household', [
             'prevId' => $prevId,
             'nextId' => $nextId,
-            'household' => Household::find($id)]);
+            'household' => $household]);
     }
 }

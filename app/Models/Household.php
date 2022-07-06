@@ -48,4 +48,16 @@ class Household extends Model
         return $this->belongsToMany(Livestock::class)
                     ->withPivot('quantity', 'income');
     }
+
+    public function next(){
+
+        return static::select('id')->where('id', '>', $this->id)->orderBy('id','asc')->first();
+
+    }
+
+    public function previous(){
+
+        return static::select('id')->where('id', '<', $this->id)->orderBy('id','desc')->first();
+
+    }
 }
