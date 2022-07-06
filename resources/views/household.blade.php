@@ -1,240 +1,117 @@
 <x-layout>
     <table class="table-auto mx-auto">
         <tr class="bg-gray-300">
-            <th class="border p-3">
-                Archive Code
-            </th>
-            <th class="border p-3">
-                Page No
-            </th>
-            <th class="border p-3">
-                Location
-            </th>
-            <th class="border p-3">
-                House No
-            </th>
-            <th class="border p-3">
-                Name
-            </th>
-            <th class="border p-3">
-                Father Name
-            </th>
-            <th class="border p-3">
-                Position
-            </th>
+            <x-th content="Archive Code" />
+            <x-th content="Page No" />
+            <x-th content="Location" />
+            <x-th content="House No" />
+            <x-th content="Name" />
+            <x-th content="Father Name" />
+            <x-th content="Position" />
         </tr>
         <tr>
-            <td class="border p-3">
-                {{ $household->archive_code }}
-            </td>
-            <td class="border p-3">
-                {{ $household->page }}
-            </td>
-            <td class="border p-3">
-                {{ $household->locationName->name . " " 
-                . $household->locationName->locationType->name_en }}
-            </td>
-            <td class="border p-3">
-                {{ $household->number }}
-            </td>
-            <td class="border p-3">
-                {{ $household->forname }}
-            </td>
-            <td class="border p-3">
-                {{ $household->surname }}
-            </td>
-            <td class="border p-3">
-                {{ $household->memberType->name_en }}
-            </td>
+            
+            <x-td :content="$household->archive_code" />
+            <x-td :content="$household->page" />
+            <x-td :content="$household->locationName->name" />
+
+            <x-td :content="$household->number" />
+            <x-td :content="$household->forname" />
+            <x-td :content="$household->surname" />
+            <x-td :content="$household->memberType->name_en" />
         </tr>
         @if ($household->notes !== "")
             <tr class="bg-gray-300">
-                <th class="border p-3" colspan="7">
-                    Notes
-                </th>
+                <x-th content="Notes" colspan="7"/>
             </tr>
             <tr >
-                <td class="border p-3" colspan="7">
-                    {{ $household->notes }}
-                </td>
+                <x-td :content="$household->notes" colspan="7" />
             </tr>    
         @endif
         @if (!$household->occupations->isEmpty())
             <tr class="bg-gray-300">
-                <th class="border p-3" colspan="6">
-                    Occupation
-                </th>
-                <th class="border p-3">
-                    Income
-                </th>
+                <x-th content="Occupation" colspan="6"/>
+                <x-th content="Income" />
             </tr>
             @foreach ($household->occupations as $occupation)
                 <tr >
-                    <td class="border p-3" colspan="3">
-                        {{ $occupation->name_tr }}
-                    </td>
-                    <td class="border p-3" colspan="3">
-                        {{ $occupation->name_en }}
-                    </td>
-                    <td class="border p-3">
-                        {{ $occupation->pivot->income }}
-                    </td>
+                    <x-td :content="$occupation->name_tr" colspan="3" />
+                    <x-td :content="$occupation->name_en" colspan="3" />
+                    <x-td :content="$occupation->pivot->income" />
                 </tr>
             @endforeach
         @endif
         @if (!$household->taxes->isEmpty())
         <tr class="bg-gray-300">
-            <th class="border p-3" colspan="6">
-                Tax
-            </th>
-            <th class="border p-3">
-                Amount
-            </th>
+            <x-th content="Tax" colspan="6"/>
+            <x-th content="Amount" />
         </tr>
         @foreach ($household->taxes as $tax)
             <tr >
-                <td class="border p-3" colspan="3">
-                    {{ $tax->name_tr }}
-                </td>
-                <td class="border p-3" colspan="3">
-                    {{ $tax->name_en }}
-                </td>
-                <td class="border p-3">
-                    {{ $tax->pivot->amount }}
-                </td>
+                <x-td :content="$tax->name_tr" colspan="3" />
+                <x-td :content="$tax->name_en" colspan="3" />
+                <x-td :content="$tax->pivot->amount" />
             </tr>
         @endforeach
     @endif
     @if (!$household->livestocks->isEmpty())
         <tr class="bg-gray-300">
-            <th class="border p-3" colspan="5">
-                Livestock
-            </th>
-            <th class="border p-3">
-                Quantity
-            </th>
-            <th class="border p-3">
-                Income
-            </th>
+            <x-th content="Livestock" colspan="5"/>
+            <x-th content="Quantity" />
+            <x-th content="Income" />
         </tr>
         @foreach ($household->livestocks as $livestock)
             <tr >
-                <td class="border p-3" colspan="3">
-                    {{ $livestock->name_tr }}
-                </td>
-                <td class="border p-3" colspan="2">
-                    {{ $livestock->name_en }}
-                </td>
-                <td class="border p-3">
-                    {{ $livestock->pivot->quantity }}
-                </td>
-                <td class="border p-3">
-                    {{ $livestock->pivot->income }}
-                </td>
+                <x-td :content="$livestock->name_tr" colspan="3" />
+                <x-td :content="$livestock->name_en" colspan="2" />
+                <x-td :content="$livestock->pivot->quantity" />
+                <x-td :content="$livestock->pivot->income" />
             </tr>
         @endforeach
     @endif
     @if (!$household->realEstates->isEmpty())
         <tr class="bg-gray-300">
-            <th class="border p-3" colspan="3">
-                Real Estate
-            </th>
-            <th class="border p-3">
-                Quantity
-            </th>
-            <th class="border p-3">
-                Income
-            </th>
-            <th class="border p-3">
-                Location
-            </th>
-            <th class="border p-3">
-                Description
-            </th>
+            <x-th content="Real Estate" colspan="3"/>
+            <x-th content="Quantity" />
+            <x-th content="Income" />
+            <x-th content="Location" />
+            <x-th content="Description" />
         </tr>
         @foreach ($household->realEstates as $realEstate)
             <tr >
-                <td class="border p-3" colspan="2" >
-                    {{ $realEstate->name_tr }}
-                </td>
-                <td class="border p-3">
-                    {{ $realEstate->name_en }}
-                </td>
-                <td class="border p-3">
-                    {{ $realEstate->pivot->quantity }}
-                </td>
-                <td class="border p-3">
-                    {{ $realEstate->pivot->income }}
-                </td>
-                <td class="border p-3">
-                    {{ $realEstate->pivot->location }}
-                </td>
-                <td class="border p-3">
-                    {{ $realEstate->pivot->description }}
-                </td>
+                <x-td :content="$realEstate->name_tr" colspan='2'/>
+                <x-td :content="$realEstate->name_en" />
+                <x-td :content="$realEstate->pivot->quantity" />
+                <x-td :content="$realEstate->pivot->income" />
+                <x-td :content="$realEstate->pivot->location" />
+                <x-td :content="$realEstate->pivot->description" />
             </tr>
         @endforeach
     @endif
     @if (!$household->lands->isEmpty())
         <tr class="bg-gray-300">
-            <th class="border p-3" colspan="2">
-                Land
-            </th>
-            <th class="border p-3">
-                Area
-            </th>
-            <th class="border p-3">
-                Income
-            </th>
-            <th class="border p-3">
-                Rent
-            </th>
-            <th class="border p-3">
-                Location
-            </th>
-            <th class="border p-3">
-                Description
-            </th>
+            <x-th content="Real Estate" colspan="2"/>
+            <x-th content="Quantity" />
+            <x-th content="Income" />
+            <x-th content="Rent" />
+            <x-th content="Location" />
+            <x-th content="Description" />
         </tr>
         @foreach ($household->lands as $land)
             <tr >
-                <td class="border p-3" >
-                    {{ $land->name_tr }}
-                </td>
-                <td class="border p-3">
-                    {{ $land->name_en }}
-                </td>
-                <td class="border p-3">
-                    {{ $land->pivot->area }}
-                </td>
-                <td class="border p-3">
-                    {{ $land->pivot->income }}
-                </td>
-                <td class="border p-3">
-                    {{ $land->pivot->rent }}
-                </td>
-                <td class="border p-3">
-                    {{ $land->pivot->location }}
-                </td>
-                <td class="border p-3">
-                    {{ $land->pivot->description }}
-                </td>
+                <x-td :content="$land->name_tr"/>
+                <x-td :content="$land->name_en" />
+                <x-td :content="$land->pivot->quantity" />
+                <x-td :content="$land->pivot->income" />
+                <x-td :content="$land->pivot->rent" />
+                <x-td :content="$land->pivot->location" />
+                <x-td :content="$land->pivot->description" />
             </tr>
         @endforeach
     @endif
     </table>
     <div class="container mx-auto p-4 relative">
-        @if ($prevId)
-        <a href={{ "/household/$prevId" }} 
-            class="inline-block bg-blue-900 hover:bg-blue-600 text-white px-3 py-1 rounded absolute left-0">
-            <
-         </a>    
-        @endif
-        @if ($nextId)
-        <a href={{ "/household/$nextId" }} 
-            class="inline-block bg-blue-900 hover:bg-blue-600 text-white px-3 py-1 rounded absolute right-0">
-            >
-         </a>    
-        @endif
+        <x-prev-next :id="$prevId" position="left" arrow="<" />
+        <x-prev-next :id="$nextId" position="right" arrow=">" />
     </div>
 </x-layout>
