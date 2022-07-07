@@ -28,4 +28,7 @@ Route::get('/', function () {
 
 Route::get('/households', [HouseholdController::class, 'index']);
 
+Route::post('/household/delete/{id}', [HouseholdController::class, 'destroy']);
+
 Route::get('/household/{id}', [HouseholdController::class, 'show']);
+

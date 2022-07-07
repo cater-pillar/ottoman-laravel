@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('household_tax', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tax_id')->constrained();
-            $table->foreignId('household_id')->constrained();
+            $table->foreignId('tax_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('household_id')->constrained()->cascadeOnDelete();
             $table->integer('amount')->nullable();
             $table->timestamps();
         });

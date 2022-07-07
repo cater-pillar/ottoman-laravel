@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('household_livestock', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('livestock_id')->constrained();
-            $table->foreignId('household_id')->constrained();
+            $table->foreignId('livestock_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('household_id')->constrained()->cascadeOnDelete();
             $table->integer('quantity')->nullable();
             $table->integer('income')->nullable();
             $table->timestamps();

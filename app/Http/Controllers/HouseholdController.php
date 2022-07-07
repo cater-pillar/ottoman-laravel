@@ -26,4 +26,9 @@ class HouseholdController extends Controller
             'nextId' => $nextId,
             'household' => $household]);
     }
+
+    public function destroy($id) {
+        Household::find($id)->delete();
+        return redirect('households');
+    }
 }

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('household_occupation', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('occupation_id')->constrained();
-            $table->foreignId('household_id')->constrained();
+            $table->foreignId('occupation_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('household_id')->constrained()->cascadeOnDelete();
             $table->integer('income')->nullable();
             $table->enum('type',['kalfa','usta','cirak'])->default(null)->nullable();
             $table->timestamps();

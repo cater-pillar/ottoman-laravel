@@ -1,5 +1,6 @@
 <x-layout>
-    <table class="table-auto mx-auto">
+    <div class="mx-auto w-min">
+    <table class="table-auto">
         <tr class="bg-gray-300">
             <x-th content="Archive Code" />
             <x-th content="Page No" />
@@ -110,8 +111,14 @@
         @endforeach
     @endif
     </table>
-    <div class="container mx-auto p-4 relative">
-        <x-prev-next :id="$prevId" position="left" arrow="<" />
-        <x-prev-next :id="$nextId" position="right" arrow=">" />
+    <div class="relative py-10">
+        <x-prev :id="$prevId" />
+        <div class="flex justify-center">
+        <x-btn-delete :url="$household->id" />
+        <x-btn-edit url="#" />
+        <div>
+        <x-next :id="$nextId" />
+    </div>
+
     </div>
 </x-layout>
