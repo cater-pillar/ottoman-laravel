@@ -14,7 +14,7 @@
         <tr class="odd:bg-gray-100">
             <td class="border p-3">
                 <a href={{ '/household/' . $household->id }}> 
-                {{ $household->locationName->name }}
+                {{ $household->locationName->name_tr }}
                 </a>
             </td>
             <x-td :content="$household->locationName->locationType->name_en" />

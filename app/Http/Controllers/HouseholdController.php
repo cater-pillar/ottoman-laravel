@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Household;
 use App\Models\LocationName;
 use App\Models\MemberType;
+use App\Models\Occupation;
+use App\Models\Tax;
+use App\Models\RealEstate;
+use App\Models\Land;
+use App\Models\Livestock;
 
 class HouseholdController extends Controller
 {
@@ -33,10 +38,20 @@ class HouseholdController extends Controller
         $household = Household::find($id);
         $locationNames = LocationName::all();
         $memberTypes = MemberType::all();
+        $occupations = Occupation::all();
+        $taxes = Tax::all();
+        $realEstates = RealEstate::all();
+        $lands = Land::all();
+        $livestocks = Livestock::all();
         return view('edit', [
             'household' => $household,
             'locationNames' => $locationNames,
-            'memberTypes' => $memberTypes
+            'memberTypes' => $memberTypes,
+            'taxes' => $taxes,
+            'realEstates' => $realEstates,
+            'lands' => $lands,
+            'livestocks' => $livestocks,
+            'occupations' => $occupations,
         ]);
     }
 

@@ -14,7 +14,7 @@
             
             <x-td :content="$household->archive_code" />
             <x-td :content="$household->page" />
-            <x-td :content="$household->locationName->name" />
+            <x-td :content="$household->locationName->name_tr" />
 
             <x-td :content="$household->number" />
             <x-td :content="$household->forname" />

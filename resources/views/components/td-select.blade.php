@@ -1,5 +1,5 @@
-@props(['options', 'name', 'current'])
-<td>
+@props(['options', 'name', 'current', 'colspan' => 1])
+<td colspan={{ $colspan }}>
     <select id={{ $name }} name={{ $name }} >
          <option value="" disabled selected>
             {{ $current }}
