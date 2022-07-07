@@ -28,6 +28,8 @@ Route::get('/', function () {
 
 Route::get('/households', [HouseholdController::class, 'index']);
 
+Route::get('/household/edit/{id}', [HouseholdController::class, 'edit']);
+
 Route::post('/household/delete/{id}', [HouseholdController::class, 'destroy']);
 
 Route::get('/household/{id}', [HouseholdController::class, 'show']);

@@ -16,7 +16,7 @@ INSERT INTO `location_types` (`id`, `name_tr`, `name_en`) VALUES
 -- Dumping data for table `location_names`
 --
 
-INSERT INTO `location_names` (`id`, `name`, `location_type_id`, `location_name_id`) VALUES
+INSERT INTO `location_names` (`id`, `name_tr`, `location_type_id`, `location_name_id`) VALUES
 (1, 'Niş', 2, NULL),
 (2, 'Niş', 1, 1),
 (3, 'Niş', 5, 2),

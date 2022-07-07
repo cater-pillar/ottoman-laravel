@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Household;
+use App\Models\LocationName;
+use App\Models\MemberType;
 
 class HouseholdController extends Controller
 {
@@ -25,6 +27,17 @@ class HouseholdController extends Controller
             'prevId' => $prevId,
             'nextId' => $nextId,
             'household' => $household]);
+    }
+
+    public function edit($id) {
+        $household = Household::find($id);
+        $locationNames = LocationName::all();
+        $memberTypes = MemberType::all();
+        return view('edit', [
+            'household' => $household,
+            'locationNames' => $locationNames,
+            'memberTypes' => $memberTypes
+        ]);
     }
 
     public function destroy($id) {

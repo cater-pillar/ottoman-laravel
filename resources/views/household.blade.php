@@ -115,7 +115,7 @@
         <x-prev :id="$prevId" />
         <div class="flex justify-center">
         <x-btn-delete :url="$household->id" />
-        <x-btn-edit url="#" />
+        <x-btn-edit :url="$household->id" />
         <div>
         <x-next :id="$nextId" />
     </div>
