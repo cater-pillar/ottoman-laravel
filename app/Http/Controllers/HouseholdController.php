@@ -11,9 +11,13 @@ use App\Models\Tax;
 use App\Models\RealEstate;
 use App\Models\Land;
 use App\Models\Livestock;
+use App\Traits\SyncVariableBuilder;
+
 
 class HouseholdController extends Controller
 {
+    use SyncVariableBuilder;
+
     public function index() {
         return view('households', [
             'households' => Household::with('memberType', 'locationName.locationType')
@@ -53,6 +57,40 @@ class HouseholdController extends Controller
             'livestocks' => $livestocks,
             'occupations' => $occupations,
         ]);
+    }
+
+    public function update($id) {
+
+        $attributes = request()->validate([
+            'archive_code' => ['required'],
+            'page' => ['required'],
+            'location_name_id' => ['required'],
+            'number' => ['required'],
+            'forname' => ['required'],
+            'surname' => ['required'],
+            'member_type_id' => ['required'],
+        ]);
+       
+        $household = Household::find($id);
+        $household->taxes()->sync($this->buildTaxes());
+        $household->occupations()->sync($this->buildOccupations());
+        $household->livestocks()->sync($this->buildLivestocks());
+        $household->lands()->sync($this->buildLands());
+        $household->realEstates()->sync($this->buildRealEstates());
+        if(request('notes')) {
+            $household->notes = request('notes');
+           }
+        $household->archive_code = $attributes['archive_code'];
+        $household->page = $attributes['page'];
+        $household->location_name_id = $attributes['location_name_id'];
+        $household->number = $attributes['number'];
+        $household->forname = $attributes['forname'];
+        $household->surname = $attributes['surname'];
+        $household->member_type_id = $attributes['member_type_id'];
+        $household->save();
+        return redirect("/household/$household->id")
+        ->with('success', "Household successfuly updated!");
+        
     }
 
     public function destroy($id) {

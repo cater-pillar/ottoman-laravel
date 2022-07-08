@@ -1,5 +1,10 @@
 <x-layout>
     <div class="mx-auto w-min">
+        @if(session()->has('success'))
+            <div >
+                {{ session()->get('success') }}
+            </div>
+        @endif
     <table class="table-auto">
         <tr class="bg-gray-300">
             <x-th content="Archive Code" />
