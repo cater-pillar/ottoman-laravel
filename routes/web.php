@@ -28,6 +28,10 @@ Route::get('/', function () {
 
 Route::get('/households', [HouseholdController::class, 'index']);
 
+Route::get('/household/create', [HouseholdController::class, 'create']);
+
+Route::post('/household/store', [HouseholdController::class, 'store']);
+
 Route::get('/household/edit/{id}', [HouseholdController::class, 'edit']);
 
 Route::post('/household/update/{id}', [HouseholdController::class, 'update']);

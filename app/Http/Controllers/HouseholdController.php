@@ -38,6 +38,29 @@ class HouseholdController extends Controller
             'household' => $household]);
     }
 
+    public function create() {
+        $locationNames = LocationName::all();
+        $memberTypes = MemberType::all();
+        $occupations = Occupation::all();
+        $taxes = Tax::all();
+        $realEstates = RealEstate::all();
+        $lands = Land::all();
+        $livestocks = Livestock::all();
+        return view('create', [
+            'locationNames' => $locationNames,
+            'memberTypes' => $memberTypes,
+            'taxes' => $taxes,
+            'realEstates' => $realEstates,
+            'lands' => $lands,
+            'livestocks' => $livestocks,
+            'occupations' => $occupations,
+        ]);
+    }
+
+    public function store() {
+        dd(request()->all());
+    }
+
     public function edit($id) {
         $household = Household::find($id);
         $locationNames = LocationName::all();
