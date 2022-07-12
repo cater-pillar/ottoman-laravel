@@ -1,24 +1,31 @@
 @props(['occupations'])
-<div x-data="{ occupations: [], number: 1}">
+<div x-data="{ occupations: [], number: 1}" class="mt-4">
     <template x-for="occupation in occupations">
-        <div>
-        <label x-bind:for="occupation.name" x-text="'Occupation ' + occupation.number">
-
-        </label>
-        <select x-bind:name="occupation.name" x-bind:id="occupation.name" 
-                class="p-3 my-2 w-full text-gray-700 border @error('occupation_id') border-red-500 @enderror"
-         >
-         @foreach ($occupations as $occupation)
-             <option value="{{ $occupation->id }}">
-                 {{ $occupation->name_tr ."/". $occupation->name_en}}
-             </option>
-         @endforeach
-     </select>
-        <label x-bind:for="occupation.income" x-text="'Occupation Income ' + occupation.number"></label>
-        <input type="number" x-bind:name="occupation.income" x-bind:id="occupation.income"
-               class="p-3 my-2 w-full text-gray-700 border @error('occupation.income') border-red-500 @enderror"
+        <div 
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="transform origin-top scale-y-0"
+        x-transition:enter-end="transform origin-top scale-y-100"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="transform origin-top scale-y-100"
+        x-transition:leave-end="transform origin-top scale-y-0"
         >
-    </div>
+            <label x-bind:for="occupation.name" x-text="'Occupation ' + occupation.number">
+
+            </label>
+            <select x-bind:name="occupation.name" x-bind:id="occupation.name" 
+                    class="p-3 my-2 w-full text-gray-700 border @error('occupation_id') border-red-500 @enderror"
+            >
+            @foreach ($occupations as $occupation)
+                <option value="{{ $occupation->id }}">
+                    {{ $occupation->name_tr ."/". $occupation->name_en}}
+                </option>
+            @endforeach
+            </select>
+            <label x-bind:for="occupation.income" x-text="'Occupation Income ' + occupation.number"></label>
+            <input type="number" x-bind:name="occupation.income" x-bind:id="occupation.income"
+                class="p-3 my-2 w-full text-gray-700 border @error('occupation.income') border-red-500 @enderror"
+            >
+        </div>
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="occupations.push({

@@ -1,7 +1,14 @@
 @props(['taxes'])
-<div x-data="{ taxes: [], number: 1}">
+<div x-data="{ taxes: [], number: 1}" class="mt-4">
     <template x-for="tax in taxes">
-        <div>
+        <div
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="transform origin-top scale-y-0"
+        x-transition:enter-end="transform origin-top scale-y-100"
+        x-transition:leave="transition ease-in duration-300"
+        x-transition:leave-start="transform origin-top scale-y-100"
+        x-transition:leave-end="transform origin-top scale-y-0"
+        >
         <label x-bind:for="tax.name" x-text="'Tax '+tax.number">
 
         </label>
