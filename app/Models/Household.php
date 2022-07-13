@@ -62,4 +62,12 @@ class Household extends Model
         return static::select('id')->where('id', '<', $this->id)->orderBy('id','desc')->first();
 
     }
+
+    public function sum($table, $column) {
+        return collect($this->$table)->reduce(
+            function($carry, $item) use ($column) {
+            return $carry + $item->pivot->$column;
+            }
+        );
+    }
 }

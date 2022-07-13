@@ -12,13 +12,13 @@ use App\Models\RealEstate;
 use App\Models\Land;
 use App\Models\Livestock;
 use App\Traits\SyncVariableBuilder;
-
+use Illuminate\Support\Facades\DB;
 
 class HouseholdController extends Controller
 {
     use SyncVariableBuilder;
 
-    public function index() {
+    public function index() { 
         return view('households', [
             'households' => Household::with('memberType', 'locationName.locationType')
             ->orderBy("location_name_id", "ASC")

@@ -60,21 +60,6 @@
             </tr>
         @endforeach
     @endif
-    @if (!$household->livestocks->isEmpty())
-        <tr class="bg-gray-300">
-            <x-th content="Livestock" colspan="5"/>
-            <x-th content="Quantity" />
-            <x-th content="Income" />
-        </tr>
-        @foreach ($household->livestocks as $livestock)
-            <tr >
-                <x-td :content="$livestock->name_tr" colspan="3" />
-                <x-td :content="$livestock->name_en" colspan="2" />
-                <x-td :content="$livestock->pivot->quantity" />
-                <x-td :content="$livestock->pivot->income" />
-            </tr>
-        @endforeach
-    @endif
     @if (!$household->realEstates->isEmpty())
         <tr class="bg-gray-300">
             <x-th content="Real Estate" colspan="3"/>
@@ -112,6 +97,21 @@
                 <x-td :content="$land->pivot->rent" />
                 <x-td :content="$land->pivot->location" />
                 <x-td :content="$land->pivot->description" />
+            </tr>
+        @endforeach
+    @endif
+    @if (!$household->livestocks->isEmpty())
+        <tr class="bg-gray-300">
+            <x-th content="Livestock" colspan="5"/>
+            <x-th content="Quantity" />
+            <x-th content="Income" />
+        </tr>
+        @foreach ($household->livestocks as $livestock)
+            <tr >
+                <x-td :content="$livestock->name_tr" colspan="3" />
+                <x-td :content="$livestock->name_en" colspan="2" />
+                <x-td :content="$livestock->pivot->quantity" />
+                <x-td :content="$livestock->pivot->income" />
             </tr>
         @endforeach
     @endif

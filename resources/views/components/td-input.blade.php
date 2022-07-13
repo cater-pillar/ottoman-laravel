@@ -1,4 +1,4 @@
-@props(['name', 'value' => 0, 'colspan' => 1, 'index' => null, 'type' => 'text'])
+@props(['name', 'value', 'colspan' => 1, 'index' => null, 'type' => 'text'])
 <td class="border" 
     colspan={{ $colspan }}>
     <input  type={{ $type }} 
