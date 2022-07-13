@@ -26,7 +26,7 @@
             <x-td :content="$household->surname" />
             <x-td :content="$household->memberType->name_en" />
         </tr>
-        @if ($household->notes !== "")
+        @if ($household->notes !== "" && $household->notes !== null)
             <tr class="bg-gray-300">
                 <x-th content="Notes" colspan="7"/>
             </tr>
@@ -96,8 +96,8 @@
     @endif
     @if (!$household->lands->isEmpty())
         <tr class="bg-gray-300">
-            <x-th content="Real Estate" colspan="2"/>
-            <x-th content="Quantity" />
+            <x-th content="Land" colspan="2"/>
+            <x-th content="Area" />
             <x-th content="Income" />
             <x-th content="Rent" />
             <x-th content="Location" />
@@ -107,7 +107,7 @@
             <tr >
                 <x-td :content="$land->name_tr"/>
                 <x-td :content="$land->name_en" />
-                <x-td :content="$land->pivot->quantity" />
+                <x-td :content="$land->pivot->area" />
                 <x-td :content="$land->pivot->income" />
                 <x-td :content="$land->pivot->rent" />
                 <x-td :content="$land->pivot->location" />

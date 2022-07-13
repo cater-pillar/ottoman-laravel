@@ -33,7 +33,7 @@
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="livestocks.push(
-            {name: 'livestock_'+number, 
+            {name: 'livestock_id_'+number, 
             number: number, 
             quantity: 'livestock_quantity_'+number, 
             income: 'livestock_income_'+number

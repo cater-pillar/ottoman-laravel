@@ -28,7 +28,11 @@
     </div>
     </template>
     <div class="flex justify-between mt-3">
-        <button x-on:click.prevent="taxes.push({name: 'tax_'+number, number: number, amount: 'tax_amount_'+number}) ; number++"
+        <button x-on:click.prevent="taxes.push({
+                                    name: 'tax_id_'+number, 
+                                    number: number, 
+                                    amount: 'tax_amount_'+number
+                                }) ; number++"
             class="inline-block bg-green-900 hover:bg-green-600 text-white py-2 px-2 rounded text-sm text-center">
             Add Tax
         </button>

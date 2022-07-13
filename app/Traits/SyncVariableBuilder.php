@@ -17,8 +17,8 @@ trait SyncVariableBuilder {
     }
 
     private function buildTaxes() {
-        $taxIds = $this->getKeyValues('tax-id-');
-        $taxAmounts = $this->getKeyValues('tax-amount-');
+        $taxIds = $this->getKeyValues('tax_id_');
+        $taxAmounts = $this->getKeyValues('tax_amount_');
         $taxes = [];
         for ($i = 0; $i < count($taxIds); $i++) {
             $taxes[$taxIds[$i]] = ['amount' => $taxAmounts[$i]];
@@ -27,8 +27,8 @@ trait SyncVariableBuilder {
     }
     
     private function buildOccupations() {
-        $occupationIds = $this->getKeyValues('occupation-id-');
-        $occupationIncomes = $this->getKeyValues('occupation-amount-');
+        $occupationIds = $this->getKeyValues('occupation_id_');
+        $occupationIncomes = $this->getKeyValues('occupation_income_');
         
         $occupations = [];
         for ($i = 0; $i < count($occupationIds); $i++) {
@@ -38,9 +38,9 @@ trait SyncVariableBuilder {
     }
 
     private function buildLivestocks() {
-        $livestockIds = $this->getKeyValues('livestock-id-');
-        $livestockQuantities = $this->getKeyValues('livestock-quantity-');
-        $livestockIncomes = $this->getKeyValues('livestock-income-');
+        $livestockIds = $this->getKeyValues('livestock_id_');
+        $livestockQuantities = $this->getKeyValues('livestock_quantity_');
+        $livestockIncomes = $this->getKeyValues('livestock_income_');
 
         $livestocks = [];
         for ($i = 0; $i < count($livestockIds); $i++) {
@@ -51,12 +51,12 @@ trait SyncVariableBuilder {
     }
 
     private function buildLands() {
-        $landIds = $this->getKeyValues('land-id-');
-        $landAreas = $this->getKeyValues('land-area-');
-        $landIncomes = $this->getKeyValues('land-income-');
-        $landRents = $this->getKeyValues('land-rent-');
-        $landDescriptions = $this->getKeyValues('land-description-');
-        $landLocations = $this->getKeyValues('land-location-');
+        $landIds = $this->getKeyValues('land_id_');
+        $landAreas = $this->getKeyValues('land_area_');
+        $landIncomes = $this->getKeyValues('land_income_');
+        $landRents = $this->getKeyValues('land_rent_');
+        $landDescriptions = $this->getKeyValues('land_description_');
+        $landLocations = $this->getKeyValues('land_location_');
         
         $lands = [];
         for ($i = 0; $i < count($landIds); $i++) {
@@ -71,11 +71,11 @@ trait SyncVariableBuilder {
     }
 
     private function buildRealEstates() {
-        $realEstateIds = $this->getKeyValues('real-estate-id-');
-        $realEstateQuantities = $this->getKeyValues('real-estate-quantity-');
-        $realEstateIncomes = $this->getKeyValues('real-estate-income-');
-        $realEstateDescriptions = $this->getKeyValues('real-estate-description-');
-        $realEstateLocations = $this->getKeyValues('real-estate-location-');
+        $realEstateIds = $this->getKeyValues('real_estate_id_');
+        $realEstateQuantities = $this->getKeyValues('real_estate_quantity_');
+        $realEstateIncomes = $this->getKeyValues('real_estate_income_');
+        $realEstateDescriptions = $this->getKeyValues('real_estate_description_');
+        $realEstateLocations = $this->getKeyValues('real_estate_location_');
 
         $realEstates = [];
         for ($i = 0; $i < count($realEstateIds); $i++) {

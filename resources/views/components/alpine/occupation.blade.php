@@ -29,7 +29,7 @@
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="occupations.push({
-                                        name: 'occupation_' + number, 
+                                        name: 'occupation_id_' + number, 
                                         number: number, 
                                         income: 'occupation_income_' + number
                                     }); number++"

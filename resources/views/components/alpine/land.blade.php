@@ -45,7 +45,7 @@
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="lands.push(
-            {name: 'land_'+number, 
+            {name: 'land_id_'+number, 
             number: number, 
             area: 'land_area_'+number, 
             income: 'land_income_'+number, 

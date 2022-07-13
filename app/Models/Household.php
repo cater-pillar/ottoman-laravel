@@ -9,6 +9,8 @@ class Household extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function locationName()
     {
         return $this->belongsTo(LocationName::class);

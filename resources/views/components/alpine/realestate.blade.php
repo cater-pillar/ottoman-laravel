@@ -41,7 +41,7 @@
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="realEstates.push(
-            {name: 'real_estate_'+number, 
+            {name: 'real_estate_id_'+number, 
             number: number, 
             quantity: 'real_estate_quantity_'+number, 
             income: 'real_estate_income_'+number, 

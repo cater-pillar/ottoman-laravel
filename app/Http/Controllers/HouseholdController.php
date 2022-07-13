@@ -21,13 +21,15 @@ class HouseholdController extends Controller
     public function index() {
         return view('households', [
             'households' => Household::with('memberType', 'locationName.locationType')
-                                      ->limit(1000)->paginate(50)->withQueryString()]);
+            ->orderBy("location_name_id", "ASC")
+            ->orderBy("number", "ASC")
+            ->orderBy("member_type_id", "ASC")
+            ->limit(1000)->paginate(50)->withQueryString()]);
     }
 
     public function show($id) {
 
         $household = Household::find($id);
-        
         $prevId = $household->previous();
         if($prevId) {$prevId = $prevId->id;}
         $nextId = $household->next();
@@ -58,7 +60,26 @@ class HouseholdController extends Controller
     }
 
     public function store() {
-        dd(request()->all());
+        $attributes = request()->validate([
+            'archive_code' => ['required'],
+            'page' => ['required'],
+            'location_name_id' => ['required'],
+            'number' => ['required'],
+            'forname' => [''],
+            'surname' => [''],
+            'member_type_id' => ['required'],
+            'notes' => [''],
+        ]);
+        $household = Household::create($attributes);
+        $household->taxes()->attach($this->buildTaxes());
+        $household->occupations()->attach($this->buildOccupations());
+        $household->livestocks()->attach($this->buildLivestocks());
+        $household->lands()->attach($this->buildLands());
+        $household->realEstates()->attach($this->buildRealEstates());
+
+        $household->save();
+        return redirect("/household/$household->id")
+        ->with('success', "Household successfuly stored!");
     }
 
     public function edit($id) {

@@ -4,7 +4,6 @@
     <input  type={{ $type }} 
             id={{ $index ? $name . (++$index) : $name }} 
             name={{ $index ? $name . $index : $name }} 
-            placeholder="{{ $value }}"
             value="{{ $value }}"
             class="p-3 w-full @error($name) border border-red-500 @enderror"
             @if ($type === "number")
