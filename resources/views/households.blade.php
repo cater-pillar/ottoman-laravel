@@ -1,4 +1,5 @@
 <x-layout>
+    @include('_success')
     <table class="container">
         <tr class="bg-gray-300">
             <x-th content="Location Name" />

@@ -139,6 +139,7 @@ class HouseholdController extends Controller
 
     public function destroy($id) {
         Household::find($id)->delete();
-        return redirect('households');
+        return redirect('households')
+        ->with('success', "Household successfuly deleted!");
     }
 }
