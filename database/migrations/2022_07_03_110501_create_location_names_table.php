@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name_tr');
             $table->foreignId('location_type_id')->constrained();
-            $table->foreignId('location_name_id')->nullable()->constrained();
+            $table->foreignId('parent_id')->nullable()->constrained();
         });
     }
 
