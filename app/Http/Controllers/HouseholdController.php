@@ -20,9 +20,7 @@ class HouseholdController extends Controller
 
     public function index() { 
         return view('households', [
-            'households' => Household::with('memberType', 'locationName.locationType')->whereHas('lands', function($q) {
-                $q->where("name_en", "farm");
-            })
+            'households' => Household::with('memberType', 'locationName.locationType')
             ->orderBy("location_name_id", "ASC")
             ->orderBy("number", "ASC")
             ->orderBy("member_type_id", "ASC")

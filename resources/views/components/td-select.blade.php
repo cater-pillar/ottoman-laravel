@@ -2,7 +2,8 @@
 <td class="border" colspan={{ $colspan }}>
     <select id={{ $index ? $name . (++$index) : $name }} 
             name={{ $index ? $name . $index : $name }} 
-            class="p-3 w-full bg-transparent @error($name) border border-red-500 @enderror"
+            class="p-3 w-full bg-transparent 
+            @error($name) border border-red-500 @enderror"
     >
          <option value="{{ $current->id }}" selected>
             {{ $current->name_tr }}

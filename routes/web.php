@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\LocationName;
+use App\Models\Occupation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Controllers\HouseholdController;
@@ -25,6 +26,14 @@ Route::get('/', function () {
         
                 );
 });
+
+Route::get('/test', function () {
+    return view('test', [
+        'jobs' => Occupation::all()],
+        
+                );
+});
+
 
 Route::get('/households', [HouseholdController::class, 'index']);
 

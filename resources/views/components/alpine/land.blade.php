@@ -1,14 +1,7 @@
 @props(['lands'])
 <div x-data="{ lands: [], number: 1}" class="mt-4">
     <template x-for="land in lands">
-        <div
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="transform origin-top scale-y-0"
-        x-transition:enter-end="transform origin-top scale-y-100"
-        x-transition:leave="transition ease-in duration-300"
-        x-transition:leave-start="transform origin-top scale-y-100"
-        x-transition:leave-end="transform origin-top scale-y-0"  
-        >
+        @include("_transition")
         <label x-bind:for="land.name" x-text="'Land '+land.number">
 
         </label>
