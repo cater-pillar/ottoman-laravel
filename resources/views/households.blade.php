@@ -1,5 +1,16 @@
 <x-layout>
     @include('_success')
+    <div>
+        <form action="/households" method="get">
+            <x-select  label='occupations' name='occupations' :collection="$occupations"/>
+            <x-select  label='taxes' name='taxes' :collection="$taxes"/>
+            <x-select  label='locations' name='locations' :collection="$locationNames"/>
+            <x-btn-submit />
+        </form>
+    </div>
+    <div>
+        {{ $count }}
+    </div>
     <table class="container">
         <tr class="bg-gray-300">
             <x-th content="Location Name" />

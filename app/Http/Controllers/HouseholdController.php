@@ -19,12 +19,54 @@ class HouseholdController extends Controller
     use SyncVariableBuilder;
 
     public function index() { 
+        $locationNames = LocationName::all();
+        $memberTypes = MemberType::all();
+        $occupations = Occupation::all();
+        $taxes = Tax::all();
+        $realEstates = RealEstate::all();
+        $lands = Land::all();
+        $livestocks = Livestock::all();
+
+        $households = Household::with('memberType', 'locationName.locationType');
+
+        if (request('occupations')) {
+            $households->whereHas('occupations', function($q) {
+                $q->where('occupations.id', request('occupations'));
+            });
+        };
+
+        if (request('taxes')) {
+            $households->whereHas('taxes', function($q) {
+                $q->where('taxes.id', request('taxes'));
+            });
+        };
+
+        if (request('locations')) {
+            $households->whereHas('locationName', function($q) {
+                $q->where('id', request('locations'));
+            });
+        };
+
+        $households->orderBy("location_name_id", "ASC")
+        ->orderBy("number", "ASC")
+        ->orderBy("member_type_id", "ASC");
+
+        $count = $households->count();
+
+
+        $paginated = $households->paginate(50)->withQueryString();
+
         return view('households', [
-            'households' => Household::with('memberType', 'locationName.locationType')
-            ->orderBy("location_name_id", "ASC")
-            ->orderBy("number", "ASC")
-            ->orderBy("member_type_id", "ASC")
-            ->limit(1000)->paginate(50)->withQueryString()]);
+            'households' => $paginated,
+            'count' => $count,
+            'locationNames' => $locationNames,
+            'memberTypes' => $memberTypes,
+            'taxes' => $taxes,
+            'realEstates' => $realEstates,
+            'lands' => $lands,
+            'livestocks' => $livestocks,
+            'occupations' => $occupations,
+        ]);
     }
 
     public function show($id) {
