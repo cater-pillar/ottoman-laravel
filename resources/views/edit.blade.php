@@ -22,14 +22,12 @@
             <x-td-input :value="$household->surname" name="surname" />
             <x-td-select name="member_type_id" :current="$household->memberType" :options="$memberTypes" />
         </tr>
-        @if ($household->notes !== "" && $household->notes !== null)
             <tr class="bg-gray-300">
                 <x-th content="Notes" colspan="7"/>
             </tr>
             <tr >
                 <x-td-input :value="$household->notes" name="notes" colspan="7" placeholder="Notes..." />
             </tr>    
-        @endif
         @if (!$household->occupations->isEmpty())
         <tr class="bg-gray-300">
             <x-th content="Occupation" colspan="6"/>
@@ -37,8 +35,8 @@
         </tr>
         @foreach ($household->occupations as $index => $occupation)
             <tr >
-                <x-td-select name="occupation_id_" :index="$index" :current="$occupation" :options="$occupations" colspan="6" />
-                <x-td-input name="occupation_income_" :index="$index" :value="$occupation->pivot->income" type="number"/>
+                <x-td-select name="occupation_id_" :index="$occupation->pivot->id" :current="$occupation" :options="$occupations" colspan="6" />
+                <x-td-input name="occupation_income_" :index="$occupation->pivot->id" :value="$occupation->pivot->income" type="number"/>
             </tr>
         @endforeach
         @endif
@@ -49,8 +47,8 @@
         </tr>
         @foreach ($household->taxes as $index => $tax)
             <tr >
-                <x-td-select name="tax_id_" :index="$index" :current="$tax" :options="$taxes" colspan="6" />
-                <x-td-input name="tax_amount_" :index="$index" :value="$tax->pivot->amount" type="number"/>
+                <x-td-select name="tax_id_" :index="$tax->pivot->id" :current="$tax" :options="$taxes" colspan="6" />
+                <x-td-input name="tax_amount_" :index="$tax->pivot->id" :value="$tax->pivot->amount" type="number"/>
             </tr>
         @endforeach
     @endif
@@ -62,9 +60,9 @@
         </tr>
         @foreach ($household->livestocks as $index => $livestock)
             <tr >
-                <x-td-select name="livestock_id_" :index="$index" :current="$livestock" :options="$livestocks" colspan="5" />
-                <x-td-input  name="livestock_quantity_" :index="$index" :value="$livestock->pivot->quantity" type="number"/>
-                <x-td-input  name="livestock_income_" :index="$index" :value="$livestock->pivot->income" type="number"/>
+                <x-td-select name="livestock_id_" :index="$livestock->pivot->id" :current="$livestock" :options="$livestocks" colspan="5" />
+                <x-td-input  name="livestock_quantity_" :index="$livestock->pivot->id" :value="$livestock->pivot->quantity" type="number"/>
+                <x-td-input  name="livestock_income_" :index="$livestock->pivot->id" :value="$livestock->pivot->income" type="number"/>
             </tr>
         @endforeach
     @endif
@@ -78,11 +76,11 @@
         </tr>
         @foreach ($household->realEstates as $index => $realEstate)
             <tr >
-                <x-td-select name="real_estate_id_" :index="$index" :current="$realEstate" :options="$realEstates" colspan="3" />
-                <x-td-input  name="real_estate_quantity_" :index="$index" :value="$realEstate->pivot->quantity" type="number"/>
-                <x-td-input  name="real_estate_income_" :index="$index" :value="$realEstate->pivot->income" type="number"/>
-                <x-td-input  name="real_estate_location_" :index="$index" :value="$realEstate->pivot->location" />
-                <x-td-input  name="real_estate_description_" :index="$index" :value="$realEstate->pivot->description" />
+                <x-td-select name="real_estate_id_" :index="$realEstate->pivot->id" :current="$realEstate" :options="$realEstates" colspan="3" />
+                <x-td-input  name="real_estate_quantity_" :index="$realEstate->pivot->id" :value="$realEstate->pivot->quantity" type="number"/>
+                <x-td-input  name="real_estate_income_" :index="$realEstate->pivot->id" :value="$realEstate->pivot->income" type="number"/>
+                <x-td-input  name="real_estate_location_" :index="$realEstate->pivot->id" :value="$realEstate->pivot->location" />
+                <x-td-input  name="real_estate_description_" :index="$realEstate->pivot->id" :value="$realEstate->pivot->description" />
             </tr>
         @endforeach
     @endif
@@ -97,12 +95,12 @@
         </tr>
         @foreach ($household->lands as $index => $land)
             <tr >
-                <x-td-select name="land_id_" :index="$index" :current="$land" :options="$lands" colspan="2" />
-                <x-td-input  name="land_area_" :index="$index" :value="$land->pivot->area" type="number"/>
-                <x-td-input  name="land_income_" :index="$index" :value="$land->pivot->income" type="number"/>
-                <x-td-input  name="land_rent_" :index="$index" :value="$land->pivot->rent" type="number"/>
-                <x-td-input  name="land_location_" :index="$index" :value="$land->pivot->location" />
-                <x-td-input  name="land_description_" :index="$index" :value="$land->pivot->description" />
+                <x-td-select name="land_id_" :index="$land->pivot->id" :current="$land" :options="$lands" colspan="2" />
+                <x-td-input  name="land_area_" :index="$land->pivot->id" :value="$land->pivot->area" type="number"/>
+                <x-td-input  name="land_income_" :index="$land->pivot->id" :value="$land->pivot->income" type="number"/>
+                <x-td-input  name="land_rent_" :index="$land->pivot->id" :value="$land->pivot->rent" type="number"/>
+                <x-td-input  name="land_location_" :index="$land->pivot->id" :value="$land->pivot->location" />
+                <x-td-input  name="land_description_" :index="$land->pivot->id" :value="$land->pivot->description" />
             </tr>
         @endforeach
     @endif

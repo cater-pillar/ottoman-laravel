@@ -165,6 +165,8 @@ class HouseholdController extends Controller
         $household->realEstates()->sync($this->buildRealEstates());
         if(request('notes')) {
             $household->notes = request('notes');
+           } else {
+            $household->notes = '';
            }
         $household->archive_code = $attributes['archive_code'];
         $household->page = $attributes['page'];
