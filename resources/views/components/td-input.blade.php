@@ -2,7 +2,7 @@
 <td class="border" 
     colspan={{ $colspan }}>
     <input  type={{ $type }} 
-            id={{ $index ? $name . (++$index) : $name }} 
+            id={{ $index ? $name . $index : $name }} 
             name={{ $index ? $name . $index : $name }} 
             value="{{ $value }}"
             class="p-3 w-full @error($name) border border-red-500 @enderror"
