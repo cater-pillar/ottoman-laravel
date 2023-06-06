@@ -30,7 +30,8 @@ trait SyncVariableBuilder {
         $taxAmounts = $this->getKeyValues('tax_amount_');
         $taxes = [];
         for ($i = 0; $i < count($taxIds); $i++) {
-            $taxes[$pivotIds[$i]] = ['tax_id' => $taxIds[$i],
+            $taxes[$pivotIds[$i]] = ['id' => $pivotIds[$i],
+                                     'tax_id' => $taxIds[$i],
                                      'amount' => $taxAmounts[$i]];
         }
         return $taxes;
@@ -43,7 +44,8 @@ trait SyncVariableBuilder {
         
         $occupations = [];
         for ($i = 0; $i < count($occupationIds); $i++) {
-            $occupations[$pivotIds[$i]] = ['occupation_id' => $occupationIds[$i],
+            $occupations[$pivotIds[$i]] = ['id' => $pivotIds[$i],
+                                           'occupation_id' => $occupationIds[$i],
                                            'income' => $occupationIncomes[$i]];
         }
         return $occupations;
@@ -57,7 +59,8 @@ trait SyncVariableBuilder {
 
         $livestocks = [];
         for ($i = 0; $i < count($livestockIds); $i++) {
-            $livestocks[$pivotIds[$i]] = ['livestock_id' => $livestockIds[$i],
+            $livestocks[$pivotIds[$i]] = ['id' => $pivotIds[$i],
+                                          'livestock_id' => $livestockIds[$i],
                                           'quantity' => $livestockQuantities[$i], 
                                           'income' => $livestockIncomes[$i]];
         }
@@ -75,7 +78,8 @@ trait SyncVariableBuilder {
         
         $lands = [];
         for ($i = 0; $i < count($landIds); $i++) {
-            $lands[$pivotIds[$i]] = ['land_id' => $landIds[$i], 
+            $lands[$pivotIds[$i]] = ['id' => $pivotIds[$i],
+                                     'land_id' => $landIds[$i], 
                                      'area' => $landAreas[$i], 
                                      'income' => $landIncomes[$i],
                                      'rent' => $landRents[$i],
@@ -96,7 +100,8 @@ trait SyncVariableBuilder {
 
         $realEstates = [];
         for ($i = 0; $i < count($realEstateIds); $i++) {
-            $realEstates[$pivotIds[$i]] = ['real_estate_id' => $realEstateIds[$i],
+            $realEstates[$pivotIds[$i]] = ['id' => $pivotIds[$i],
+                                           'real_estate_id' => $realEstateIds[$i],
                                            'quantity' => $realEstateQuantities[$i], 
                                            'income' => $realEstateIncomes[$i],
                                            'location' => $realEstateLocations[$i],

@@ -12,6 +12,6 @@ class Land extends Model
     public function households()
     {
         return $this->belongsToMany(Household::class)
-                    ->withPivot('area', 'income', 'rent', 'location', 'description');
+                    ->withPivot('id', 'area', 'income', 'rent', 'location', 'description');
     }
 }

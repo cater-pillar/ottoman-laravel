@@ -40,6 +40,11 @@
             </tr>
         @endforeach
         @endif
+        <tr>
+            <td class="border p-4" colspan="7">
+                <x-alpine.occupation :occupations="$occupations" />
+            </td>
+        </tr>
         @if (!$household->taxes->isEmpty())
         <tr class="bg-gray-300">
             <x-th content="Tax" colspan="6"/>
@@ -52,6 +57,11 @@
             </tr>
         @endforeach
     @endif
+    <tr>
+        <td class="border p-4" colspan="7">
+            <x-alpine.tax :taxes="$taxes" />
+        </td>
+    </tr>
     @if (!$household->livestocks->isEmpty())
         <tr class="bg-gray-300">
             <x-th content="Livestock" colspan="5"/>
@@ -66,6 +76,11 @@
             </tr>
         @endforeach
     @endif
+    <tr>
+        <td class="border p-4" colspan="7">
+           <x-alpine.livestock :livestocks="$livestocks" />
+        </td>
+    </tr>
     @if (!$household->realEstates->isEmpty())
         <tr class="bg-gray-300">
             <x-th content="Real Estate" colspan="3"/>
@@ -84,6 +99,11 @@
             </tr>
         @endforeach
     @endif
+    <tr>
+        <td class="border p-4" colspan="7">
+            <x-alpine.realestate :realEstates="$realEstates" />
+        </td>
+    </tr>
     @if (!$household->lands->isEmpty())
         <tr class="bg-gray-300">
             <x-th content="Land" colspan="2"/>
@@ -104,6 +124,11 @@
             </tr>
         @endforeach
     @endif
+    <tr>
+        <td class="border p-4" colspan="7">
+           <x-alpine.land :lands="$lands" />
+        </td>
+    </tr>
     </table>
     <div class="py-10">
         <x-btn-submit />

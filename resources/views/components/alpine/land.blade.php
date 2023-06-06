@@ -1,4 +1,4 @@
-@props(['lands'])
+ @props(['lands'])
 <div x-data="{ lands: [], number: 1}" class="mt-4">
     <template x-for="land in lands">
         @include("_transition")

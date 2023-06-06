@@ -146,7 +146,7 @@ class HouseholdController extends Controller
     }
 
     public function update($id) {
-
+//dd($this->buildLands());
         $attributes = request()->validate([
             'archive_code' => ['required'],
             'page' => ['required'],
