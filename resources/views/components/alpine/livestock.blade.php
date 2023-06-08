@@ -1,4 +1,4 @@
-@props(['livestocks'])
+@props(['livestocks', 'new' => false])
 <div x-data="{ livestocks: [], number: 1}" class="mt-4">
     <template x-for="livestock in livestocks">
         @include("_transition")
@@ -26,10 +26,10 @@
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="livestocks.push(
-            {name: 'livestock_id_'+number, 
+            {name: 'livestock_{{ $new ? "new_" : "" }}id_'+number, 
             number: number, 
-            quantity: 'livestock_quantity_'+number, 
-            income: 'livestock_income_'+number
+            quantity: 'livestock_{{ $new ? "new_" : "" }}quantity_'+number, 
+            income: 'livestock_{{ $new ? "new_" : "" }}income_'+number
         }) ; number++"
             class="inline-block bg-green-900 hover:bg-green-600 text-white py-2 px-2 rounded text-sm text-center">
             Add Livestock

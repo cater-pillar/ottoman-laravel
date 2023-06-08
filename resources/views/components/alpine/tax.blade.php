@@ -1,4 +1,4 @@
-@props(['taxes'])
+@props(['taxes', 'new' => false])
 <div x-data="{ taxes: [], number: 1}" class="mt-4">
     <template x-for="tax in taxes">
         @include("_transition")
@@ -22,9 +22,9 @@
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="taxes.push({
-                                    name: 'tax_id_'+number, 
+                                    name: 'tax_{{ $new ? "new_" : "" }}id_'+number, 
                                     number: number, 
-                                    amount: 'tax_amount_'+number
+                                    amount: 'tax_{{ $new ? "new_" : "" }}amount_'+number
                                 }) ; number++"
             class="inline-block bg-green-900 hover:bg-green-600 text-white py-2 px-2 rounded text-sm text-center">
             Add Tax

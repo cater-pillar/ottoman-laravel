@@ -1,4 +1,4 @@
-@props(['occupations'])
+@props(['occupations', 'new' => false])
 <div x-data="{ occupations: [], number: 1}" class="mt-4">
     <template x-for="occupation in occupations">
         @include("_transition")
@@ -22,9 +22,9 @@
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="occupations.push({
-                                        name: 'occupation_id_' + number, 
+                                        name: 'occupation_{{ $new ? "new_" : "" }}id_' + number, 
                                         number: number, 
-                                        income: 'occupation_income_' + number
+                                        income: 'occupation_{{ $new ? "new_" : "" }}income_' + number
                                     }); number++"
             class="inline-block bg-green-900 hover:bg-green-600 text-white py-2 px-2 rounded text-sm text-center">
             Add Occupation

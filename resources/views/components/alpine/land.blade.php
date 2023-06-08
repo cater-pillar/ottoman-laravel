@@ -1,4 +1,4 @@
- @props(['lands'])
+ @props(['lands', 'new' => false])
 <div x-data="{ lands: [], number: 1}" class="mt-4">
     <template x-for="land in lands">
         @include("_transition")
@@ -38,13 +38,13 @@
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="lands.push(
-            {name: 'land_id_'+number, 
+            {name: 'land_{{ $new ? "new_" : "" }}id_'+number, 
             number: number, 
-            area: 'land_area_'+number, 
-            income: 'land_income_'+number, 
-            rent: 'land_rent_'+number,
-            location: 'land_location_'+number,
-            description: 'land_description_'+number,
+            area: 'land_{{ $new ? "new_" : "" }}area_'+number, 
+            income: 'land_{{ $new ? "new_" : "" }}income_'+number, 
+            rent: 'land_{{ $new ? "new_" : "" }}rent_'+number,
+            location: 'land_{{ $new ? "new_" : "" }}location_'+number,
+            description: 'land_{{ $new ? "new_" : "" }}description_'+number,
         }) ; number++"
             class="inline-block bg-green-900 hover:bg-green-600 text-white py-2 px-2 rounded text-sm text-center">
             Add Land

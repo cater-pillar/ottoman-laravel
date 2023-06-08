@@ -23,31 +23,31 @@ class Household extends Model
 
     public function occupations()
     {
-        return $this->belongsToMany(Occupation::class)
+        return $this->belongsToMany(Occupation::class)->withTimestamps()
                     ->withPivot('id', 'income', 'type');
     }
 
     public function taxes()
     {
-        return $this->belongsToMany(Tax::class)
+        return $this->belongsToMany(Tax::class)->withTimestamps()
                     ->withPivot('id', 'amount');
     }
 
     public function realEstates()
     {
-        return $this->belongsToMany(RealEstate::class)
+        return $this->belongsToMany(RealEstate::class)->withTimestamps()
                     ->withPivot('id', 'quantity', 'income', 'location', 'description');
     }
 
     public function lands()
     {
-        return $this->belongsToMany(Land::class)
+        return $this->belongsToMany(Land::class)->withTimestamps()
                     ->withPivot('id', 'area', 'income', 'rent', 'location', 'description');
     }
 
     public function livestocks()
     {
-        return $this->belongsToMany(Livestock::class)
+        return $this->belongsToMany(Livestock::class)->withTimestamps()
                     ->withPivot('id', 'quantity', 'income');
     }
 

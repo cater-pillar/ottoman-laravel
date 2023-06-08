@@ -1,4 +1,4 @@
-@props(['realEstates'])
+@props(['realEstates', 'new' => false])
 <div x-data="{ realEstates: [], number: 1}" class="mt-4">
     <template x-for="realEstate in realEstates">
         @include("_transition")
@@ -34,12 +34,12 @@
     </template>
     <div class="flex justify-between mt-3">
         <button x-on:click.prevent="realEstates.push(
-            {name: 'real_estate_id_'+number, 
+            {name: 'real_estate_{{ $new ? "new_" : "" }}id_'+number, 
             number: number, 
-            quantity: 'real_estate_quantity_'+number, 
-            income: 'real_estate_income_'+number, 
-            location: 'real_estate_location_'+number,
-            description: 'real_estate_description_'+number,
+            quantity: 'real_estate_{{ $new ? "new_" : "" }}quantity_'+number, 
+            income: 'real_estate_{{ $new ? "new_" : "" }}income_'+number, 
+            location: 'real_estate_{{ $new ? "new_" : "" }}location_'+number,
+            description: 'real_estate_{{ $new ? "new_" : "" }}description_'+number,
         }) ; number++"
             class="inline-block bg-green-900 hover:bg-green-600 text-white py-2 px-2 rounded text-sm text-center">
             Add Real Estate

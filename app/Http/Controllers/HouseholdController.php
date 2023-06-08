@@ -146,7 +146,7 @@ class HouseholdController extends Controller
     }
 
     public function update($id) {
-//dd($this->buildLands());
+
         $attributes = request()->validate([
             'archive_code' => ['required'],
             'page' => ['required'],
@@ -159,10 +159,15 @@ class HouseholdController extends Controller
        
         $household = Household::find($id);
         $household->taxes()->sync($this->buildTaxes());
+        $household->taxes()->attach($this->buildTaxes(true));
         $household->occupations()->sync($this->buildOccupations());
+        $household->occupations()->attach($this->buildOccupations(true));
         $household->livestocks()->sync($this->buildLivestocks());
+        $household->livestocks()->attach($this->buildLivestocks(true));
         $household->lands()->sync($this->buildLands());
+        $household->lands()->attach($this->buildLands(true));
         $household->realEstates()->sync($this->buildRealEstates());
+        $household->realEstates()->attach($this->buildRealEstates(true));
         if(request('notes')) {
             $household->notes = request('notes');
            } else {

@@ -42,7 +42,7 @@
         @endif
         <tr>
             <td class="border p-4" colspan="7">
-                <x-alpine.occupation :occupations="$occupations" />
+                <x-alpine.occupation :occupations="$occupations" :new="true" />
             </td>
         </tr>
         @if (!$household->taxes->isEmpty())
@@ -59,7 +59,7 @@
     @endif
     <tr>
         <td class="border p-4" colspan="7">
-            <x-alpine.tax :taxes="$taxes" />
+            <x-alpine.tax :taxes="$taxes" :new="true" />
         </td>
     </tr>
     @if (!$household->livestocks->isEmpty())
@@ -78,7 +78,7 @@
     @endif
     <tr>
         <td class="border p-4" colspan="7">
-           <x-alpine.livestock :livestocks="$livestocks" />
+           <x-alpine.livestock :livestocks="$livestocks" :new="true" />
         </td>
     </tr>
     @if (!$household->realEstates->isEmpty())
@@ -101,7 +101,7 @@
     @endif
     <tr>
         <td class="border p-4" colspan="7">
-            <x-alpine.realestate :realEstates="$realEstates" />
+            <x-alpine.realestate :realEstates="$realEstates" :new="true" />
         </td>
     </tr>
     @if (!$household->lands->isEmpty())
@@ -126,7 +126,7 @@
     @endif
     <tr>
         <td class="border p-4" colspan="7">
-           <x-alpine.land :lands="$lands" />
+           <x-alpine.land :lands="$lands" :new="true" />
         </td>
     </tr>
     </table>
