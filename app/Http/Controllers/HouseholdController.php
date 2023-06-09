@@ -180,9 +180,55 @@ class HouseholdController extends Controller
         $household->forname = $attributes['forname'];
         $household->surname = $attributes['surname'];
         $household->member_type_id = $attributes['member_type_id'];
+
+        $occupations = $this->findKeys('delete_occupation_');
+
+        if($occupations->count() > 0) {
+            foreach($occupations as $occupation) {
+                $household->occupations()->wherePivot('id',str_replace('delete_occupation_','', $occupation))->detach();
+            }
+        }
+
+        $taxes = $this->findKeys('delete_tax_');
+
+        if($taxes->count() > 0) {
+            foreach($taxes as $tax) {
+                $household->taxes()->wherePivot('id',str_replace('delete_tax_','', $tax))->detach();
+            }
+        }
+
+        $livestocks = $this->findKeys('delete_livestock_');
+
+        if($livestocks->count() > 0) {
+            foreach($livestocks as $livestock) {
+                $household->livestocks()->wherePivot('id',str_replace('delete_livestock_','', $livestock))->detach();
+            }
+        }
+
+        $realEstates = $this->findKeys('delete_real_estate_');
+
+        if($realEstates->count() > 0) {
+            foreach($realEstates as $realEstate) {
+                $household->realEstates()->wherePivot('id',str_replace('delete_real_estate_','', $realEstate))->detach();
+            }
+        }
+
+
+        $lands = $this->findKeys('delete_land_');
+
+        if($lands->count() > 0) {
+            foreach($lands as $land) {
+                $household->lands()->wherePivot('id',str_replace('delete_land_','', $land))->detach();
+            }
+        }
+        
+        
         $household->save();
         return redirect("/household/$household->id")
         ->with('success', "Household successfuly updated!");
+
+        /* deleting pivot entries */
+
         
     }
 

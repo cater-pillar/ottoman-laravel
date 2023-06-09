@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('household_livestock', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('livestock_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('livestock_id')->constrained()->restrictOnDelete();
             $table->foreignId('household_id')->constrained()->cascadeOnDelete();
             $table->integer('quantity')->nullable();
             $table->integer('income')->nullable();

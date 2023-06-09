@@ -2,7 +2,7 @@
 namespace App\Traits;
 
 trait SyncVariableBuilder {
-   /* this method gets   */
+ 
     private function findKeys($needle) {
         return collect(request()->keys())->filter(
             fn($key) => str_contains($key, $needle) && $key);

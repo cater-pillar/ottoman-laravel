@@ -30,13 +30,15 @@
             </tr>    
         @if (!$household->occupations->isEmpty())
         <tr class="bg-gray-300">
-            <x-th content="Occupation" colspan="6"/>
+            <x-th content="Occupation" colspan="5"/>
             <x-th content="Income" />
+            <x-th content="Delete" />
         </tr>
         @foreach ($household->occupations as $index => $occupation)
-            <tr >
-                <x-td-select name="occupation_id_" :index="$occupation->pivot->id" :current="$occupation" :options="$occupations" colspan="6" />
+            <tr class="">
+                <x-td-select name="occupation_id_" :index="$occupation->pivot->id" :current="$occupation" :options="$occupations" colspan="5" />
                 <x-td-input name="occupation_income_" :index="$occupation->pivot->id" :value="$occupation->pivot->income" type="number"/>
+                <x-td-checkbox name="{{ 'delete_occupation_'.$occupation->pivot->id }}" />    
             </tr>
         @endforeach
         @endif
@@ -47,13 +49,15 @@
         </tr>
         @if (!$household->taxes->isEmpty())
         <tr class="bg-gray-300">
-            <x-th content="Tax" colspan="6"/>
+            <x-th content="Tax" colspan="5"/>
             <x-th content="Amount" />
+            <x-th content="Delete" />
         </tr>
         @foreach ($household->taxes as $index => $tax)
             <tr >
-                <x-td-select name="tax_id_" :index="$tax->pivot->id" :current="$tax" :options="$taxes" colspan="6" />
+                <x-td-select name="tax_id_" :index="$tax->pivot->id" :current="$tax" :options="$taxes" colspan="5" />
                 <x-td-input name="tax_amount_" :index="$tax->pivot->id" :value="$tax->pivot->amount" type="number"/>
+                <x-td-checkbox name="{{ 'delete_tax_'.$tax->pivot->id }}" /> 
             </tr>
         @endforeach
     @endif
@@ -64,15 +68,17 @@
     </tr>
     @if (!$household->livestocks->isEmpty())
         <tr class="bg-gray-300">
-            <x-th content="Livestock" colspan="5"/>
+            <x-th content="Livestock" colspan="4"/>
             <x-th content="Quantity" />
             <x-th content="Income" />
+            <x-th content="Delete" />
         </tr>
         @foreach ($household->livestocks as $index => $livestock)
             <tr >
-                <x-td-select name="livestock_id_" :index="$livestock->pivot->id" :current="$livestock" :options="$livestocks" colspan="5" />
+                <x-td-select name="livestock_id_" :index="$livestock->pivot->id" :current="$livestock" :options="$livestocks" colspan="4" />
                 <x-td-input  name="livestock_quantity_" :index="$livestock->pivot->id" :value="$livestock->pivot->quantity" type="number"/>
                 <x-td-input  name="livestock_income_" :index="$livestock->pivot->id" :value="$livestock->pivot->income" type="number"/>
+                <x-td-checkbox name="{{ 'delete_livestock_'.$livestock->pivot->id }}" /> 
             </tr>
         @endforeach
     @endif
@@ -83,19 +89,21 @@
     </tr>
     @if (!$household->realEstates->isEmpty())
         <tr class="bg-gray-300">
-            <x-th content="Real Estate" colspan="3"/>
+            <x-th content="Real Estate" colspan="2"/>
             <x-th content="Quantity" />
             <x-th content="Income" />
             <x-th content="Location" />
             <x-th content="Description" />
+            <x-th content="Delete" />
         </tr>
         @foreach ($household->realEstates as $index => $realEstate)
             <tr >
-                <x-td-select name="real_estate_id_" :index="$realEstate->pivot->id" :current="$realEstate" :options="$realEstates" colspan="3" />
+                <x-td-select name="real_estate_id_" :index="$realEstate->pivot->id" :current="$realEstate" :options="$realEstates" colspan="2" />
                 <x-td-input  name="real_estate_quantity_" :index="$realEstate->pivot->id" :value="$realEstate->pivot->quantity" type="number"/>
                 <x-td-input  name="real_estate_income_" :index="$realEstate->pivot->id" :value="$realEstate->pivot->income" type="number"/>
                 <x-td-input  name="real_estate_location_" :index="$realEstate->pivot->id" :value="$realEstate->pivot->location" />
                 <x-td-input  name="real_estate_description_" :index="$realEstate->pivot->id" :value="$realEstate->pivot->description" />
+                <x-td-checkbox name="{{ 'delete_real_estate_'.$realEstate->pivot->id }}" /> 
             </tr>
         @endforeach
     @endif
@@ -106,21 +114,23 @@
     </tr>
     @if (!$household->lands->isEmpty())
         <tr class="bg-gray-300">
-            <x-th content="Land" colspan="2"/>
+            <x-th content="Land" />
             <x-th content="Area" />
             <x-th content="Income" />
             <x-th content="Rent" />
             <x-th content="Location" />
             <x-th content="Description" />
+            <x-th content="Delete" />
         </tr>
         @foreach ($household->lands as $index => $land)
             <tr >
-                <x-td-select name="land_id_" :index="$land->pivot->id" :current="$land" :options="$lands" colspan="2" />
+                <x-td-select name="land_id_" :index="$land->pivot->id" :current="$land" :options="$lands" />
                 <x-td-input  name="land_area_" :index="$land->pivot->id" :value="$land->pivot->area" type="number"/>
                 <x-td-input  name="land_income_" :index="$land->pivot->id" :value="$land->pivot->income" type="number"/>
                 <x-td-input  name="land_rent_" :index="$land->pivot->id" :value="$land->pivot->rent" type="number"/>
                 <x-td-input  name="land_location_" :index="$land->pivot->id" :value="$land->pivot->location" />
                 <x-td-input  name="land_description_" :index="$land->pivot->id" :value="$land->pivot->description" />
+                <x-td-checkbox name="{{ 'delete_land_'.$land->pivot->id }}" />
             </tr>
         @endforeach
     @endif

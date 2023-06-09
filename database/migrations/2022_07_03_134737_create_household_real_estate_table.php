@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('household_real_estate', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('real_estate_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('real_estate_id')->constrained()->restrictOnDelete();
             $table->foreignId('household_id')->constrained()->cascadeOnDelete();
             $table->integer('quantity')->nullable();
             $table->integer('income')->nullable();
