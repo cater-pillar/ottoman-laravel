@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('location_names', function (Blueprint $table) {
             $table->id();
             $table->string('name_tr');
-            $table->foreignId('location_type_id')->constrained();
-            $table->foreignId('parent_id')->nullable()->constrained();
+            $table->foreignId('location_type_id')->constrained()->restrictOnDelete();
+            $table->foreignId('location_name_id')->nullable()->constrained()->restrictOnDelete(); 
         });
     }
 

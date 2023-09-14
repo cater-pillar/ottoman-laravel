@@ -12,11 +12,13 @@ use App\Models\RealEstate;
 use App\Models\Land;
 use App\Models\Livestock;
 use App\Traits\SyncVariableBuilder;
+use App\Traits\HouseholdsFilter;
 use Illuminate\Support\Facades\DB;
 
 class HouseholdController extends Controller
 {
     use SyncVariableBuilder;
+    use HouseholdsFilter;
 
     public function index() { 
         $locationNames = LocationName::all();
@@ -27,32 +29,11 @@ class HouseholdController extends Controller
         $lands = Land::all();
         $livestocks = Livestock::all();
 
-        $households = Household::with('memberType', 'locationName.locationType');
+        $households = $this->filterHouseholds();
 
-        if (request('occupations')) {
-            $households->whereHas('occupations', function($q) {
-                $q->where('occupations.id', request('occupations'));
-            });
-        };
-
-        if (request('taxes')) {
-            $households->whereHas('taxes', function($q) {
-                $q->where('taxes.id', request('taxes'));
-            });
-        };
-
-        if (request('locations')) {
-            $households->whereHas('locationName', function($q) {
-                $q->where('id', request('locations'));
-            });
-        };
-
-        $households->orderBy("location_name_id", "ASC")
-        ->orderBy("number", "ASC")
-        ->orderBy("member_type_id", "ASC");
+ 
 
         $count = $households->count();
-
 
         $paginated = $households->paginate(50)->withQueryString();
 
@@ -70,12 +51,12 @@ class HouseholdController extends Controller
     }
 
     public function show($id) {
-
+        $ids = $this->filterHouseholds()->pluck('id');
         $household = Household::find($id);
-        $prevId = $household->previous();
-        if($prevId) {$prevId = $prevId->id;}
-        $nextId = $household->next();
-        if($nextId) {$nextId = $nextId->id;}
+        
+        $ids->search($id) == 0 ? $prevId = $ids->search($ids->count()-1) : $prevId = $ids[$ids->search($id)-1];
+        $ids->search($id) == $ids->count()-1 ? $nextId = $ids->search(0) : $nextId = $ids[$ids->search($id)+1];
+    
         return view('household', [
             'prevId' => $prevId,
             'nextId' => $nextId,
@@ -226,8 +207,6 @@ class HouseholdController extends Controller
         $household->save();
         return redirect("/household/$household->id")
         ->with('success', "Household successfuly updated!");
-
-        /* deleting pivot entries */
 
         
     }

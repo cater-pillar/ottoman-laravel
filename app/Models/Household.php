@@ -51,18 +51,6 @@ class Household extends Model
                     ->withPivot('id', 'quantity', 'income');
     }
 
-    public function next(){
-
-        return static::select('id')->where('id', '>', $this->id)->orderBy('id','asc')->first();
-
-    }
-
-    public function previous(){
-
-        return static::select('id')->where('id', '<', $this->id)->orderBy('id','desc')->first();
-
-    }
-
     public function sum($table, $column) {
         return collect($this->$table)->reduce(
             function($carry, $item) use ($column) {

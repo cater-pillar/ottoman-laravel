@@ -25,7 +25,7 @@
     @foreach ($households as $household)
         <tr class="odd:bg-gray-100">
             <td class="border p-3">
-                <a href={{ '/household/' . $household->id }}> 
+                <a href={{ strpos(url()->full(), "?") ? '/household/' . $household->id . substr(url()->full(), strpos(url()->full(), "?")) : '/household/' . $household->id}}> 
                 {{ $household->locationName->name_tr }}
                 </a>
             </td>
