@@ -10,11 +10,11 @@
             <x-input name="forname" label="Name" placeholder="Name" />
             <x-input name="notes" label="Notes" placeholder="Notes..." />
             <x-select label="Position in the Household" name="member_type_id" :collection="$memberTypes" />
-            <x-alpine.occupation :occupations="$occupations" />
-            <x-alpine.tax :taxes="$taxes" />
-            <x-alpine.land :lands="$lands" />
-            <x-alpine.realestate :realEstates="$realEstates" />
-            <x-alpine.livestock :livestocks="$livestocks" />
+            <x-alpine.occupation :occupations="$occupations" :new="true"/> <!-- :new true is reduntant -->
+            <x-alpine.tax :taxes="$taxes" :new="true"/>
+            <x-alpine.land :lands="$lands" :new="true"/>
+            <x-alpine.realestate :realEstates="$realEstates" :new="true"/>
+            <x-alpine.livestock :livestocks="$livestocks" :new="true"/>
         <div class="py-10">
             <x-btn-submit />
         </div>

@@ -94,11 +94,11 @@ class HouseholdController extends Controller
             'notes' => [''],
         ]);
         $household = Household::create($attributes);
-        $household->taxes()->attach($this->buildTaxes());
-        $household->occupations()->attach($this->buildOccupations());
-        $household->livestocks()->attach($this->buildLivestocks());
-        $household->lands()->attach($this->buildLands());
-        $household->realEstates()->attach($this->buildRealEstates());
+        $household->taxes()->attach($this->buildTaxes(true));
+        $household->occupations()->attach($this->buildOccupations(true));
+        $household->livestocks()->attach($this->buildLivestocks(true));
+        $household->lands()->attach($this->buildLands(true));
+        $household->realEstates()->attach($this->buildRealEstates(true));
 
         $household->save();
         return redirect("/household/$household->id")

@@ -1,6 +1,8 @@
 <?php
 namespace App\Traits;
 
+use function Ramsey\Uuid\v1;
+
 trait SyncVariableBuilder {
  
     private function findKeys($needle) {
@@ -26,6 +28,7 @@ trait SyncVariableBuilder {
 
     private function buildTaxes($new = false) {
         $taxes = [];
+        /** this code is used with attach method */
         if($new) {
             $taxIds = $this->getKeyValues('tax_new_id_');
             $pivotIds = $this->getPivotIds('tax_new_id_');
@@ -35,6 +38,9 @@ trait SyncVariableBuilder {
                                          'amount' => $taxAmounts[$i]];
             }
         }
+
+        /** this code is used with sync method */
+
         if(!$new) {
             $taxIds = $this->getKeyValues('tax_id_');
             $pivotIds = $this->getPivotIds('tax_id_');
@@ -51,6 +57,9 @@ trait SyncVariableBuilder {
     
     private function buildOccupations($new = false) {
         $occupations = [];
+
+        /** this code is used with attach method */
+
         if($new){
             $occupationIds = $this->getKeyValues('occupation_new_id_');
             $pivotIds = $this->getPivotIds('occupation_new_id_');
@@ -60,6 +69,7 @@ trait SyncVariableBuilder {
                                                'income' => $occupationIncomes[$i]];
             }
         }
+        /** this code is used with sync method */
         if(!$new) {
             $occupationIds = $this->getKeyValues('occupation_id_');
             $pivotIds = $this->getPivotIds('occupation_id_');
@@ -77,6 +87,8 @@ trait SyncVariableBuilder {
 
     private function buildLivestocks($new = false) {
         $livestocks = [];
+
+        /** this code is used with attach method */
         if($new) {
             $livestockIds = $this->getKeyValues('livestock_new_id_');
             $pivotIds = $this->getPivotIds('livestock_new_id_');
@@ -88,6 +100,7 @@ trait SyncVariableBuilder {
                                               'income' => $livestockIncomes[$i]];
             }
         }
+        /** this code is used with sync method */
         if(!$new) {
             $livestockIds = $this->getKeyValues('livestock_id_');
             $pivotIds = $this->getPivotIds('livestock_id_');
@@ -106,6 +119,7 @@ trait SyncVariableBuilder {
 
     private function buildLands($new = false) {
         $lands = [];
+        /** this code is used with attach method */
         if($new) {
             $landIds = $this->getKeyValues('land_new_id_');
             $pivotIds = $this->getPivotIds('land_new_id_');
@@ -124,6 +138,7 @@ trait SyncVariableBuilder {
                                     ];
             }
         }
+        /** this code is used with sync method */
         if(!$new) {
             $landIds = $this->getKeyValues('land_id_');
             $pivotIds = $this->getPivotIds('land_id_');
@@ -149,6 +164,7 @@ trait SyncVariableBuilder {
 
     private function buildRealEstates($new = false) {
         $realEstates = [];
+        /** this code is used with attach method */
         if($new) {
             $realEstateIds = $this->getKeyValues('real_estate_new_id_');
             $pivotIds = $this->getPivotIds('real_estate_new_id_');
@@ -165,6 +181,7 @@ trait SyncVariableBuilder {
                                     ];
             }
         }
+        /** this code is used with sync method */
         if(!$new) {
             $realEstateIds = $this->getKeyValues('real_estate_id_');
             $pivotIds = $this->getPivotIds('real_estate_id_');

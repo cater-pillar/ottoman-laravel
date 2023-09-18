@@ -5,6 +5,9 @@
             <x-select  label='occupations' name='occupations' :collection="$occupations"/>
             <x-select  label='taxes' name='taxes' :collection="$taxes"/>
             <x-select  label='locations' name='locations' :collection="$locationNames"/>
+            <x-select  label='real estates' name='real_estates' :collection="$realEstates"/>
+            <x-select  label='lands' name='lands' :collection="$lands"/>
+            <x-select  label='livestocks' name='livestocks' :collection="$livestocks"/>
             <x-btn-submit />
         </form>
     </div>
