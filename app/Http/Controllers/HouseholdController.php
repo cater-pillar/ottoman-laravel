@@ -13,12 +13,16 @@ use App\Models\Land;
 use App\Models\Livestock;
 use App\Traits\SyncVariableBuilder;
 use App\Traits\HouseholdsFilter;
+use App\Traits\HouseholdsCalculator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class HouseholdController extends Controller
 {
     use SyncVariableBuilder;
     use HouseholdsFilter;
+    use HouseholdsCalculator;
 
     public function index() { 
         $locationNames = LocationName::all();
@@ -35,11 +39,24 @@ class HouseholdController extends Controller
 
         $count = $households->count();
 
+        $ids = $households->pluck('id')->all();
+        
         $paginated = $households->paginate(50)->withQueryString();
+
+ 
+
+        $sums = [
+            'occupation' => $this->getSum($ids,"household_occupation", "income"),
+            'land' => $this->getSum($ids,"household_land", "income"),
+            'realEstate' => $this->getSum($ids,"household_real_estate", "income"),
+            'livestock' => $this->getSum($ids,"household_livestock", "income"),
+            'tax' => $this->getSum($ids,"household_tax", "amount"),
+        ];
 
         return view('households', [
             'households' => $paginated,
             'count' => $count,
+            'sums' => $sums,
             'locationNames' => $locationNames,
             'memberTypes' => $memberTypes,
             'taxes' => $taxes,

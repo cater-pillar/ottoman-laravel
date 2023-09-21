@@ -11,10 +11,29 @@
             <x-btn-submit />
         </form>
     </div>
-    <div>
-        {{ $count }}
-    </div>
-    <table class="container">
+    
+    <table class="container my-10 text-center">
+        <tr class="bg-gray-300">
+            <x-th content="Total Households" />
+            <x-th content="Occupation Income" />
+            <x-th content="Land Income" />
+            <x-th content="Livestock Income" />
+            <x-th content="Real Estate Income" />
+            <x-th content="Total Income" />
+            <x-th content="Taxes" />
+        </tr>
+        <tr class="odd:bg-gray-100">
+            <x-td :content="$count" />
+            <x-td :content="$sums['occupation'] " />
+            <x-td :content="$sums['land']" />
+            <x-td :content="$sums['livestock']" />
+            <x-td :content="$sums['realEstate']" />
+            <x-td :content="$sums['occupation']+$sums['land']+$sums['livestock']+$sums['realEstate']" />
+            <x-td :content="$sums['tax']" />
+        </tr>
+    </table>
+
+    <table class="container my-10">
         <tr class="bg-gray-300">
             <x-th content="Location Name" />
             <x-th content="Location Type" />
