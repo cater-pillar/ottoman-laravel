@@ -23,13 +23,13 @@
             <x-th content="Taxes" />
         </tr>
         <tr class="odd:bg-gray-100">
-            <x-td :content="$count" />
-            <x-td :content="$sums['occupation'] " />
-            <x-td :content="$sums['land']" />
-            <x-td :content="$sums['livestock']" />
-            <x-td :content="$sums['realEstate']" />
-            <x-td :content="$sums['occupation']+$sums['land']+$sums['livestock']+$sums['realEstate']" />
-            <x-td :content="$sums['tax']" />
+            <x-td :content="number_format($count)" />
+            <x-td :content="number_format($sums['occupation'])" />
+            <x-td :content="number_format($sums['land'])" />
+            <x-td :content="number_format($sums['livestock'])" />
+            <x-td :content="number_format($sums['realEstate'])" />
+            <x-td :content="number_format($sums['occupation']+$sums['land']+$sums['livestock']+$sums['realEstate'])" />
+            <x-td :content="number_format($sums['tax'])" />
         </tr>
     </table>
 

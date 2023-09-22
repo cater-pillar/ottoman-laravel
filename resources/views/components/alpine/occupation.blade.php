@@ -9,9 +9,11 @@
                     class="p-3 my-2 w-full text-gray-700 border @error('occupation_id') border-red-500 @enderror"
             >
             @foreach ($occupations as $occupation)
+                @if ($occupation->children()->count() === 0)
                 <option value="{{ $occupation->id }}">
                     {{ $occupation->name_tr ."/". $occupation->name_en}}
                 </option>
+                @endif
             @endforeach
             </select>
             <label x-bind:for="occupation.income" x-text="'Occupation Income ' + occupation.number"></label>

@@ -6,12 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait IsSelfReferencing
 {
-    /**
-     * The self referencing key on the database table.
-     *
-     * @var string
-     */
-    protected $referenceKey = 'parent_id';
+
 
     /**
      * The belongsTo parent relationship.

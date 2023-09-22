@@ -11,6 +11,13 @@ class Occupation extends Model
 {
     use HasFactory;
     use IsSelfReferencing;
+
+        /**
+     * The self referencing key on the database table.
+     *
+     * @var string
+     */
+    protected $referenceKey = 'occupation_id';
     
     public function households()
     {

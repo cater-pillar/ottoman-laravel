@@ -2,7 +2,7 @@
     <form action="/household/store" method="POST">
         @csrf
         <div class="mx-auto ">
-            <x-select label="Location" name="location_name_id" :collection="$locationNames" />
+            <x-select_loc label="Location" name="location_name_id" :collection="$locationNames" />
             <x-input name="number" label="Household number" placeholder="Household number" type='number' />
             <x-input name="archive_code" label="Archive Code" placeholder="Archive Code" />
             <x-input name="page" label="Page Number" placeholder="Page Number" type='number' />

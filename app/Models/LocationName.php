@@ -12,6 +12,13 @@ class LocationName extends Model
     use HasFactory;
     use IsSelfReferencing;
 
+            /**
+     * The self referencing key on the database table.
+     *
+     * @var string
+     */
+    protected $referenceKey = 'location_name_id';
+
     public function locationName()
     {
         return $this->belongsTo(LocationName::class);
@@ -19,8 +26,7 @@ class LocationName extends Model
 
     public function locationType()
     {
-        return $this->belongsTo(LocationType::class)
-                    ;
+        return $this->belongsTo(LocationType::class);
     }
 
     public function households()

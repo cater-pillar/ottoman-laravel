@@ -117,6 +117,10 @@ class HouseholdController extends Controller
         $household->lands()->attach($this->buildLands(true));
         $household->realEstates()->attach($this->buildRealEstates(true));
 
+        session(['location' => request('location_name_id'),
+                 'archive_code' => request('archive_code'),
+    ]);
+
         $household->save();
         return redirect("/household/$household->id")
         ->with('success', "Household successfuly stored!");
