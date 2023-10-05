@@ -25,17 +25,15 @@ class HouseholdController extends Controller
     use HouseholdsCalculator;
 
     public function index() { 
-        $locationNames = LocationName::all();
+        $locationNames = LocationName::where('location_name_id', null)->with('descendants')->get();
         $memberTypes = MemberType::all();
-        $occupations = Occupation::all();
+        $occupations = Occupation::where('occupation_id', null)->with('descendants')->get();
         $taxes = Tax::all();
         $realEstates = RealEstate::all();
         $lands = Land::all();
         $livestocks = Livestock::all();
 
         $households = $this->filterHouseholds();
-
- 
 
         $count = $households->count();
 

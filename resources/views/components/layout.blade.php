@@ -23,9 +23,27 @@
                     </a>
                 </li>
                 <li class="inline-block">
-                    <a href='#' 
+                    <a href='/occupations' 
                        class='inline-block hover:bg-blue-700 p-5'>
-                       Last Added
+                       Occupations
+                    </a>
+                </li>
+                <li class="inline-block">
+                    <a href='/lands' 
+                       class='inline-block hover:bg-blue-700 p-5'>
+                       Lands
+                    </a>
+                </li>
+                <li class="inline-block">
+                    <a href='/realestates' 
+                       class='inline-block hover:bg-blue-700 p-5'>
+                       Real Estates
+                    </a>
+                </li>
+                <li class="inline-block">
+                    <a href='/taxes' 
+                       class='inline-block hover:bg-blue-700 p-5'>
+                       Taxes
                     </a>
                 </li>
                 <li class="inline-block">

@@ -6,6 +6,10 @@ use App\Models\Occupation;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Controllers\HouseholdController;
+use App\Http\Controllers\OccupationController;
+use App\Http\Controllers\LandController;
+use App\Http\Controllers\RealEstateController;
+use App\Http\Controllers\TaxController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,6 +39,11 @@ Route::get('/test', function () {
 });
 
 
+Route::get('/occupations', [OccupationController::class, 'index']);
+Route::get('/lands', [LandController::class, 'index']);
+Route::get('/realestates', [RealEstateController::class, 'index']);
+Route::get('/taxes', [TaxController::class, 'index']);
+
 Route::get('/households', [HouseholdController::class, 'index']);
 
 Route::get('/household/create', [HouseholdController::class, 'create']);
@@ -48,4 +57,7 @@ Route::post('/household/update/{id}', [HouseholdController::class, 'update']);
 Route::post('/household/delete/{id}', [HouseholdController::class, 'destroy']);
 
 Route::get('/household/{id}', [HouseholdController::class, 'show']);
+
+
+
 

@@ -10,9 +10,10 @@ trait HouseholdsFilter
     private function filterHouseholds() {
         $households = Household::with('memberType', 'locationName.locationType');
 
-        if (request('occupations')) {
-            $households->whereHas('occupations', function($q) {
-                $q->where('occupations.id', request('occupations'));
+        $occupationIds = $this->getPivotIds("occupation_");
+        if ($occupationIds) {
+            $households->whereHas('occupations', function($q) use($occupationIds) {
+                    $q->whereIn('occupations.id', $occupationIds);
             });
         };
 
@@ -21,6 +22,16 @@ trait HouseholdsFilter
                 $q->where('taxes.id', request('taxes'));
             });
         };
+
+
+        $locationIds = $this->getPivotIds("location_");
+
+        if ($locationIds) {
+            $households->whereHas('locationName', function($q) use($locationIds) {
+                    $q->whereIn('id', $locationIds);
+            });
+        };
+
 
         if (request('locations')) {
             $households->whereHas('locationName', function($q) {

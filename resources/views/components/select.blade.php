@@ -9,7 +9,7 @@ class="p-3 my-2 w-full text-gray-700 border
     >
     <option value="">...</option>
     @foreach ($collection as $item)
-        <option value="{{ $item->id }}">
+        <option value="{{ $item->id }}" @if( $item->id == request($name)) selected @endif>
             {{ $item->name_tr }}
         </option>
     @endforeach
