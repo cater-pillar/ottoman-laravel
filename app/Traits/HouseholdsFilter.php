@@ -17,9 +17,10 @@ trait HouseholdsFilter
             });
         };
 
-        if (request('taxes')) {
-            $households->whereHas('taxes', function($q) {
-                $q->where('taxes.id', request('taxes'));
+        $taxIds = $this->getPivotIds('taxes_');
+        if ($taxIds) {
+            $households->whereHas('taxes', function($q) use($taxIds){
+                $q->whereIn('taxes.id', $taxIds);
             });
         };
 
@@ -32,30 +33,35 @@ trait HouseholdsFilter
             });
         };
 
-
-        if (request('locations')) {
-            $households->whereHas('locationName', function($q) {
-                $q->where('id', request('locations'));
+        $memberIds = $this->getPivotIds('member_type_');
+        if ($memberIds) {
+            $households->whereHas('memberType', function($q) use($memberIds) {
+                $q->whereIn('id', $memberIds);
             });
         };
 
-        if (request('real_estates')) {
-            $households->whereHas('realEstates', function($q) {
-                $q->where('real_estates.id', request('real_estates'));
+        $realEstateIds = $this->getPivotIds('real_estates_');
+        if ($realEstateIds) {
+            $households->whereHas('realEstates', function($q) use($realEstateIds) {
+                $q->whereIn('real_estates.id', $realEstateIds);
             });
         };
 
-        if (request('lands')) {
-            $households->whereHas('lands', function($q) {
-                $q->where('lands.id', request('lands'));
+        $landIds = $this->getPivotIds('lands_');
+        if ($landIds) {
+            $households->whereHas('lands', function($q) use($landIds) {
+                $q->whereIn('lands.id', $landIds);
             });
         };
 
-        if (request('livestocks')) {
-            $households->whereHas('livestocks', function($q) {
-                $q->where('livestocks.id', request('livestocks'));
+        $livestockIds = $this->getPivotIds('livestocks_');
+        if ($livestockIds) {
+            $households->whereHas('livestocks', function($q) use($livestockIds) {
+                $q->whereIn('livestocks.id', $livestockIds);
             });
         };
+
+
 
         return $households->orderBy("location_name_id", "ASC")
         ->orderBy("number", "ASC")

@@ -79,7 +79,7 @@ class HouseholdController extends Controller
     }
 
     public function create() {
-        $locationNames = LocationName::all();
+        $locationNames = LocationName::with('locationType')->get();
         $memberTypes = MemberType::all();
         $occupations = Occupation::all();
         $taxes = Tax::all();
