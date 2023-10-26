@@ -1,7 +1,7 @@
 <x-layout>
     <div>
         <form action="/taxes" method="get">
-            <x-select  label='locations' name='locations' :collection="$locationNames"/>
+            <x-location_box :collection="$locationNames"/>
             <x-btn-submit />
         </form>
     </div>
@@ -17,8 +17,13 @@
         <tr class="odd:bg-gray-100">
             <x-td :content="$tax->name_tr" />
             <x-td :content="$tax->name_en" />
-            <x-td :content="$tax->households->where('location_name_id', request('locations'))->count()" />
-            <x-td :content="$tax->households->where('location_name_id', request('locations'))->reduce(function ($carry, $item) {return $carry + $item->pivot->amount;})" />
+            <x-td :content="$tax->households
+            ->whereIn('location_name_id', $locationIds)->count()" />
+            <x-td :content="$tax->households
+            ->whereIn('location_name_id', $locationIds)
+            ->reduce(function ($carry, $item) {
+                return $carry + $item->pivot->amount;
+                })" />
         </tr>
     @endforeach
 

@@ -16,8 +16,13 @@
         <tr class="odd:bg-gray-100">
             <x-td :content="$occupation->name_tr" />
             <x-td :content="$occupation->name_en" />
-            <x-td :content="$occupation->households->whereIn('location_name_id', $locationIds)->count()" />
-            <x-td :content="$occupation->households->whereIn('location_name_id', $locationIds)->reduce(function ($carry, $item) {return $carry + $item->pivot->income;})" />
+            <x-td :content="$occupation->households
+            ->whereIn('location_name_id', $locationIds)->count()" />
+            <x-td :content="$occupation->households
+            ->whereIn('location_name_id', $locationIds)
+            ->reduce(function ($carry, $item) {
+                return $carry + $item->pivot->income;
+                })" />
         </tr>
     @endforeach
         <tr class="odd:bg-gray-100">

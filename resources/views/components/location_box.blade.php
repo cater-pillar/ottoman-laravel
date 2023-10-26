@@ -18,7 +18,7 @@
                    class="hidden"
                    >
             <label for='{{"location_$root->id"}}' >
-                {{ $root->name_tr }}
+                {{ $root->name_tr . " " . $root->locationType->name_en}}
             </label>
             @if ($root->children->count() > 0)
                 <div class="border m-2 p-2 bg-gray-100" x-show="checked">
@@ -38,7 +38,7 @@
                                class="hidden"
                                >
                         <label for='{{"location_$child->id"}}'>
-                            {{ $child->name_tr  }}
+                            {{ $child->name_tr . " " . $child->locationType->name_en }}
                         </label>
                         @if ($child->children->count() > 0)
                             <div class="border m-2 p-2 bg-gray-100" x-show="checked">
@@ -56,7 +56,7 @@
                                            id='{{"location_$grandchild->id"}}' x-model="checked"
                                            class="hidden">
                                     <label for='{{"location_$grandchild->id"}}'>
-                                        {{ $grandchild->name_tr }}
+                                        {{ $grandchild->name_tr . " " . $grandchild->locationType->name_en }}
                                     </label>
                                     @if ($grandchild->children->count() > 0)
                                     <div class="border m-2 p-2 bg-gray-100" x-show="checked">
@@ -72,7 +72,7 @@
                                             <input type="checkbox" name='{{"location_$descendant->id"}}' 
                                                    id='{{"location_$descendant->id"}}' x-model="checked" class="hidden">
                                             <label for='{{"location_$descendant->id"}}'>
-                                                {{ $descendant->name_tr }}
+                                                {{ $descendant->name_tr . " " . $descendant->locationType->name_en}}
                                             </label>
                                         </div>
                                         @endforeach

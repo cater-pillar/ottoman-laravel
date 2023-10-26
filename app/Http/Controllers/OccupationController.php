@@ -12,7 +12,7 @@ use App\Models\RealEstate;
 use App\Models\Land;
 use App\Models\Livestock;
 use App\Traits\SyncVariableBuilder;
-use App\Traits\HouseholdsFilter;
+use App\Traits\OccupationsFilter;
 use App\Traits\HouseholdsCalculator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,8 +21,10 @@ use Illuminate\Database\Eloquent\Collection;
 class OccupationController extends Controller
 {
     use SyncVariableBuilder;
+    use OccupationsFilter;
     public function index() { 
-        $locationNames = LocationName::where('location_name_id', null)->with('descendants')->get();
+        $locationNames = LocationName::where('location_name_id', null)
+        ->with('descendants')->get();
         $memberTypes = MemberType::all();
         $taxes = Tax::all();
         $realEstates = RealEstate::all();
@@ -30,18 +32,9 @@ class OccupationController extends Controller
         $livestocks = Livestock::all();
         $households = Household::all();
         
-        $prepare = Occupation::with('households');
-
         $locationIds = $this->getPivotIds("location_");
-
-        if ($locationIds) {
-            $prepare->whereHas('households', function($q) use($locationIds) {
-                    $q->whereIn('location_name_id', $locationIds);
-            });
-        };
-
         
-        $occupations = $prepare->get();
+        $occupations = $this->filterOccupations($locationIds);
 
 
 
