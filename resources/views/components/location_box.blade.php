@@ -1,12 +1,21 @@
 @props(['collection'])
 
-    <div class="border p-2 bg-gray-100 mb-3 select-none">
-        <p class="p-1 m-1 font-bold">Locations</p>
+    <div class="border p-2 bg-gray-100 mb-3 select-none"
+        @if(collect(request()->keys())
+        ->filter(fn($key) => str_contains($key, 'location') && $key)
+        ->count() > 0)
+        x-data="{open:true}"
+        @else
+        x-data="{open:false}"
+        @endif 
+        >
+        <p class="p-1 m-1 font-bold" x-on:click="open = ! open">Locations</p>
+        <div x-cloak x-show="open">
         @foreach ($collection as $root)
         <div class="p-1 m-1 border max-w-fit rounded bg-white"
             @if(request("location_$root->id")) 
                 x-data="{checked: true}"
-            @else
+            @else 
                 x-data="{checked: false}"
             @endif
             @if ($root->children->count() == 0)
@@ -21,7 +30,7 @@
                 {{ $root->name_tr . " " . $root->locationType->name_en}}
             </label>
             @if ($root->children->count() > 0)
-                <div class="border m-2 p-2 bg-gray-100" x-show="checked">
+                <div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked">
                     @foreach ($root->children as $child)
                     <div class="inline-block p-1 m-1 border max-w-fit rounded bg-white"  
                          @if(request("location_$child->id"))
@@ -41,7 +50,7 @@
                             {{ $child->name_tr . " " . $child->locationType->name_en }}
                         </label>
                         @if ($child->children->count() > 0)
-                            <div class="border m-2 p-2 bg-gray-100" x-show="checked">
+                            <div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked">
                                 @foreach ($child->children as $grandchild)
                                 <div    class="inline-block p-1 m-1 border max-w-fit rounded bg-white"
                                         @if(request("location_$grandchild->id"))
@@ -59,7 +68,7 @@
                                         {{ $grandchild->name_tr . " " . $grandchild->locationType->name_en }}
                                     </label>
                                     @if ($grandchild->children->count() > 0)
-                                    <div class="border m-2 p-2 bg-gray-100" x-show="checked">
+                                    <div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked">
                                         @foreach ($grandchild->children as $descendant)
                                         <div class="inline-block p-1 m-1 border max-w-fit rounded bg-white"
                                              @if(request("location_$descendant->id"))
@@ -88,4 +97,5 @@
             @endif
         </div>
         @endforeach
+        </div>
     </div>

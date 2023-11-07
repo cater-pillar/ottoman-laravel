@@ -1,7 +1,16 @@
 @props(['collection'])
 
-    <div class="border p-2 bg-gray-100 mb-3 select-none" >
-        <p class="p-1 m-1 font-bold">Occupations</p>
+    <div class="border p-2 bg-gray-100 mb-3 select-none" 
+            @if(collect(request()->keys())
+            ->filter(fn($key) => str_contains($key, 'occupation') && $key)
+            ->count() > 0)
+            x-data="{open:true}"
+            @else
+            x-data="{open:false}"
+            @endif 
+        >
+        <p class="p-1 m-1 font-bold" x-on:click="open = ! open">Occupations</p>
+        <div x-cloak x-show="open">
         @foreach ($collection as $root)
             <div    class="p-1 m-1 border max-w-fit rounded bg-white"
                     @if(request("occupation_$root->id"))
@@ -24,4 +33,5 @@
                 @endif
             </div>        
         @endforeach
+        </div>
     </div>

@@ -4,11 +4,11 @@
         <form action="/households" method="get">
             <x-occupation_box :collection="$occupations" />
             <x-location_box :collection="$locationNames" />
-            <x-box label="member_type" :collection="$memberTypes" />
-            <x-box  label='taxes' :collection="$taxes"/>
-            <x-box  label='real_estates' :collection="$realEstates"/>
-            <x-box  label='lands' :collection="$lands"/>
-            <x-box  label='livestocks' :collection="$livestocks"/>
+            <x-box title="Filter by Household Member" label="member_type" :collection="$memberTypes" />
+            <x-box title="Filter by Tax" label='taxes' :collection="$taxes"/>
+            <x-box title="Filter by Real Estate" label='real_estates' :collection="$realEstates"/>
+            <x-box title="Filter by Land" label='lands' :collection="$lands"/>
+            <x-box title="Filter by Livestock" label='livestocks' :collection="$livestocks"/>
             <x-btn-submit />
         </form>
     </div>
