@@ -10,7 +10,7 @@
             @endif 
         >
         <p class="p-1 m-1 font-bold" x-on:click="open = ! open">Occupations</p>
-        <div x-cloak x-show="open">
+        <div x-cloak x-show="open" @include("_transition")>
         @foreach ($collection as $root)
             <div    class="p-1 m-1 border max-w-fit rounded bg-white"
                     @if(request("occupation_$root->id"))

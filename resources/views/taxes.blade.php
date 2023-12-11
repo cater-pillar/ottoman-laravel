@@ -17,16 +17,12 @@
         <tr class="odd:bg-gray-100">
             <x-td :content="$tax->name_tr" />
             <x-td :content="$tax->name_en" />
-            <x-td :content="$tax->households
-            ->whereIn('location_name_id', $locationIds)->count()" />
-            <x-td :content="$tax->households
-            ->whereIn('location_name_id', $locationIds)
-            ->reduce(function ($carry, $item) {
+            <x-td :content="$tax->households->count()" />
+            <x-td :content="$tax->households->reduce(function ($carry, $item) {
                 return $carry + $item->pivot->amount;
                 })" />
         </tr>
     @endforeach
-
     </table>
 
 

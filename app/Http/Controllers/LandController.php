@@ -35,6 +35,8 @@ class LandController extends Controller
         $locationIds = $this->getPivotIds("location_");
         
         $lands = $this->filterLands($locationIds);
+
+        
    
         return view('lands', [
             'households' => $households,

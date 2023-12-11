@@ -9,6 +9,9 @@
             <x-box title="Filter by Real Estate" label='real_estates' :collection="$realEstates"/>
             <x-box title="Filter by Land" label='lands' :collection="$lands"/>
             <x-box title="Filter by Livestock" label='livestocks' :collection="$livestocks"/>
+            <x-input name="notes" label="Search Notes" placeholder="type the text you're looking for..." />
+            <x-input name="forname" label="Search Fornames" placeholder="type the text you're looking for..." />
+            <x-input name="surname" label="Search Surnames" placeholder="type the text you're looking for..." />
             <x-btn-submit />
         </form>
     </div>

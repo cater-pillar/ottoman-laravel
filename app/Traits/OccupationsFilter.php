@@ -9,12 +9,15 @@ trait OccupationsFilter
 {
     private function filterOccupations($ids) {
         
-        $prepare = Occupation::with('households');
+        $prepare = Occupation::query();
 
         if ($ids) {
             $prepare->whereHas('households', function($q) use($ids) {
                     $q->whereIn('location_name_id', $ids);
-            });
+            })
+            ->with(['households' => function ($q) use ($ids) {
+                $q->whereIn('location_name_id', $ids);
+            }]);
         };
 
         $occupations = $prepare->get();

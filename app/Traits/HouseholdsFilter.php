@@ -47,6 +47,13 @@ trait HouseholdsFilter
             });
         };
 
+        // if(request('real_estates_description')) {
+        //     $needle = '%'.request('real_estates_description').'%';
+        //     $households->whereHas('realEstates', function($q) use($needle) { 
+        //         $q->where('description', 'like', $needle);
+        //     }); 
+        // }
+
         $landIds = $this->getPivotIds('lands_');
         if ($landIds) {
             $households->whereHas('lands', function($q) use($landIds) {
@@ -60,6 +67,21 @@ trait HouseholdsFilter
                 $q->whereIn('livestocks.id', $livestockIds);
             });
         };
+
+        if (request('notes')) {
+            $needle = '%'.request('notes').'%';
+            $households->where('notes', 'like', $needle);
+        }
+
+        if (request('forname')) {
+            $needle1 = '%'.request('forname').'%';
+            $households->where('forname', 'like', $needle1);
+        }
+
+        if (request('surname')) {
+            $needle2 = '%'.request('surname').'%';
+            $households->where('surname', 'like', $needle2);
+        }
 
 
 

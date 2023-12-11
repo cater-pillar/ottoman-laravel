@@ -1,7 +1,7 @@
 @props(['livestocks', 'new' => false])
 <div x-data="{ livestocks: [], number: 1}" class="mt-4">
     <template x-for="livestock in livestocks">
-        @include("_transition")
+        <div @include("_transition") >
         <label x-bind:for="livestock.name" x-text="'Livestock '+livestock.number">
 
         </label>

@@ -11,7 +11,7 @@
     <p class="p-1 m-1 font-bold" x-on:click="open = ! open">
         {{$title}}
     </p>
-    <div x-cloak x-show="open">
+    <div x-cloak x-show="open" @include("_transition")>
         @foreach ($collection as $index => $item)
             <div class="inline-block p-1 m-1 border max-w-fit rounded bg-white" 
                 @if(request($label .'_'. $item->id))
@@ -31,6 +31,10 @@
             </label>
             </div>
          @endforeach
+         {{-- @if ($label == "real_estates" || $label == "lands")       
+         <x-input name="{{$label.'_description'}}" label='' placeholder="search description text..." />
+         <x-input name="{{$label.'_location'}}" label='' placeholder="search location text..." />
+         @endif --}}
     </div>
 </div>
 

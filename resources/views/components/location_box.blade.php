@@ -10,7 +10,7 @@
         @endif 
         >
         <p class="p-1 m-1 font-bold" x-on:click="open = ! open">Locations</p>
-        <div x-cloak x-show="open">
+        <div x-cloak x-show="open" @include("_transition")>
         @foreach ($collection as $root)
         <div class="p-1 m-1 border max-w-fit rounded bg-white"
             @if(request("location_$root->id")) 
@@ -30,7 +30,7 @@
                 {{ $root->name_tr . " " . $root->locationType->name_en}}
             </label>
             @if ($root->children->count() > 0)
-                <div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked">
+                <div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked" @include("_transition")>
                     @foreach ($root->children as $child)
                     <div class="inline-block p-1 m-1 border max-w-fit rounded bg-white"  
                          @if(request("location_$child->id"))
@@ -50,7 +50,7 @@
                             {{ $child->name_tr . " " . $child->locationType->name_en }}
                         </label>
                         @if ($child->children->count() > 0)
-                            <div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked">
+                            <div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked" @include("_transition")>
                                 @foreach ($child->children as $grandchild)
                                 <div    class="inline-block p-1 m-1 border max-w-fit rounded bg-white"
                                         @if(request("location_$grandchild->id"))
@@ -68,7 +68,7 @@
                                         {{ $grandchild->name_tr . " " . $grandchild->locationType->name_en }}
                                     </label>
                                     @if ($grandchild->children->count() > 0)
-                                    <div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked">
+                                    <div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked" @include("_transition")>
                                         @foreach ($grandchild->children as $descendant)
                                         <div class="inline-block p-1 m-1 border max-w-fit rounded bg-white"
                                              @if(request("location_$descendant->id"))

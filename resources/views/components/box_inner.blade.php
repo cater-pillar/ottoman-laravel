@@ -1,6 +1,6 @@
 @props(['collection'])
 
-<div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked">
+<div class="border m-2 p-2 bg-gray-100" x-cloak x-show="checked" @include("_transition")>
     @foreach ($collection as $item)
         <div class="inline-block p-1 m-1 border max-w-fit rounded bg-white"            
              @if(request("occupation_$item->id"))
