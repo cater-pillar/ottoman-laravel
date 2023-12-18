@@ -12,7 +12,7 @@ use App\Models\RealEstate;
 use App\Models\Land;
 use App\Models\Livestock;
 use App\Traits\SyncVariableBuilder;
-use App\Traits\TaxesFilter;
+use App\Traits\PivotTableFilter;
 use App\Traits\HouseholdsCalculator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,22 +21,18 @@ use Illuminate\Database\Eloquent\Collection;
 class TaxController extends Controller
 {
     use SyncVariableBuilder;
-    use TaxesFilter;
+    use PivotTableFilter;
     public function index() { 
         $locationNames = LocationName::where('location_name_id', null)
         ->with('descendants')->get();
         $memberTypes = MemberType::all();
         $lands = Land::all();
         $realEstates = RealEstate::all();
-        $occupations = Occupation::all();
+        $occupations = Occupation::where('occupation_id', null)->with('descendants')->get();
         $livestocks = Livestock::all();
         $households = Household::all();
         
-        $locationIds = $this->getPivotIds("location_");
-        
-        $taxes = $this->filterTaxes($locationIds);
-   
-
+        $taxes = $this->filterPivotTables(Tax::query());
 
         return view('taxes', [
             'households' => $households,
@@ -47,7 +43,6 @@ class TaxController extends Controller
             'lands' => $lands,
             'livestocks' => $livestocks,
             'occupations' => $occupations,
-            'locationIds' => $locationIds,
         ]);
     }
 }

@@ -1,7 +1,9 @@
 <x-layout>
     <div>
         <form action="/realestates" method="get">
+            <x-occupation_box :collection="$occupations" />
             <x-location_box :collection="$locationNames"/>
+            <x-box title="Filter by Household Member" label="member_type" :collection="$memberTypes" />
             <x-input name="description" label="Search By Description" placeholder="type the text you're looking for..." />
             <x-input name="location" label="Search By Location" placeholder="type the text you're looking for..." />
             <x-btn-submit />

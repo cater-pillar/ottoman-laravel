@@ -2,6 +2,9 @@
     <div>
         <form action="/occupations" method="get">
             <x-location_box :collection="$locationNames"/>
+            <x-box title="Filter by Household Member" label="member_type" :collection="$memberTypes" />
+            <x-box title="Filter by Real Estate" label='real_estates' :collection="$realEstates"/>
+            <x-box title="Filter by Land" label='lands' :collection="$lands"/>
             <x-btn-submit />
         </form>
     </div>
