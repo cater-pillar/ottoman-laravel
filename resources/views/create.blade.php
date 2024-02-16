@@ -10,7 +10,7 @@
             <x-input name="forname" label="Name" placeholder="Name" />
             <x-input name="notes" label="Notes" placeholder="Notes..." />
             <x-select label="Position in the Household" name="member_type_id" :collection="$memberTypes" />
-            <x-alpine.occupation :occupations="$occupations" :new="true"/> <!-- :new true is reduntant -->
+            <x-alpine.occupation :occupations="$occupations->sortBy('name_tr')" :new="true"/> <!-- :new true is reduntant -->
             <x-alpine.tax :taxes="$taxes" :new="true"/>
             <x-alpine.land :lands="$lands" :new="true"/>
             <x-alpine.realestate :realEstates="$realEstates" :new="true"/>
