@@ -15,8 +15,12 @@
             
             <x-td :content="$household->archive_code" />
             <x-td :content="$household->page" />
-            <x-td :content="$household->locationName->name_tr" />
-
+            <td class="border p-3" colspan="1">
+                {{ $household->locationName->parent->name_tr." ".
+                   $household->locationName->parent->locationType->name_en.
+                " / " .$household->locationName->name_tr. " ".
+                $household->locationName->locationType->name_en }}
+            </td>
             <x-td :content="$household->number" />
             <x-td :content="$household->forname" />
             <x-td :content="$household->surname" />
