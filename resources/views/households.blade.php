@@ -1,17 +1,52 @@
 <x-layout>
     @include('_success')
     <div>
+
+        <x-filter_actives :request="$request" />
         <form action="/households" method="get">
-            <x-occupation_box :collection="$occupations" />
-            <x-location_box :collection="$locationNames" />
-            <x-box title="Filter by Household Member" label="member_type" :collection="$memberTypes" />
-            <x-box title="Filter by Tax" label='taxes' :collection="$taxes"/>
-            <x-box title="Filter by Real Estate" label='real_estates' :collection="$realEstates"/>
-            <x-box title="Filter by Land" label='lands' :collection="$lands"/>
-            <x-box title="Filter by Livestock" label='livestocks' :collection="$livestocks"/>
-            <x-input name="notes" label="Search Notes" placeholder="type the text you're looking for..." />
-            <x-input name="forname" label="Search Fornames" placeholder="type the text you're looking for..." />
-            <x-input name="surname" label="Search Surnames" placeholder="type the text you're looking for..." />
+            <div x-data="{open:false, filter: null, search: [], 
+                    tempData: {
+                        name: '',
+                        logic: '',
+                        input: '',
+                        refKeys: []
+                    }}">
+                <x-filter_apply />
+                <div class="relative inline-block">
+                    <div class="inline-block border p-2 bg-gray-100 mb-3 select-none" 
+                         x-on:click="open = ! open; filter = null; tempData.refKeys = []; tempData.input= null">
+                         add filter
+                    </div>
+                    <div x-cloak x-show="open" 
+                        class="border bg-gray-100 text-gray-500 rounded absolute top-11 left-0 w-80" >
+                        <x-filter_list />
+                        <x-filter_set label='locations' :collection="$locationNames" :options="['any', 'none']" type='selfref'/>
+                        <x-filter_set label='occupations' :collection="$occupations" :options="['any', 'all', 'none']" type='selfref'/>
+                        <x-filter_set label='taxes' :collection="$taxes" :options="['any', 'all', 'none']"/>
+                        <x-filter_set label='lands' :collection="$lands" :options="['any', 'all', 'none']"/>
+                        <x-filter_set label='real_estates' :collection="$realEstates" :options="['any', 'all', 'none']"/>
+                        <x-filter_set label='livestocks' :collection="$livestocks" :options="['any', 'all', 'none']"/>
+                        <x-filter_set label='member_type' :options="['any', 'none']" :collection="$memberTypes" />
+                        <x-filter_set label='notes' :options="['contains', 'lacks']" type='text'/>
+                        <x-filter_set label='forname' :options="['contains', 'lacks']" type='text'/>
+                        <x-filter_set label='surname' :options="['contains', 'lacks']" type='text'/>
+                        <x-filter_set label='occupation_income' :options="['>', '<', '=']" type='number'/>
+                        <x-filter_set label='tax_amount' :options="['>', '<', '=']" type='number'/>
+                        <x-filter_set label='land_area' :options="['>', '<', '=']" type='number'/>
+                        <x-filter_set label='land_income' :options="['>', '<', '=']" type='number'/>
+                        <x-filter_set label='land_rent' :options="['>', '<', '=']" type='number'/>
+                        <x-filter_set label='land_location' :options="['contains', 'lacks']" type='text'/>
+                        <x-filter_set label='land_description' :options="['contains', 'lacks']" type='text'/>
+                        <x-filter_set label='real_estate_quantity' :options="['>', '<', '=']" type='number'/>
+                        <x-filter_set label='real_estate_income' :options="['>', '<', '=']" type='number'/>
+                        <x-filter_set label='real_estate_location' :options="['contains', 'lacks']" type='text'/>
+                        <x-filter_set label='real_estate_description' :options="['contains', 'lacks']" type='text'/>
+                        <x-filter_set label='livestock_quantity' :options="['>', '<', '=']" type='number'/>
+                        <x-filter_set label='livestock_income' :options="['>', '<', '=']" type='number'/> 
+                        <x-filter_set label='total_income' :options="['>', '<', '=']" type='number'/> 
+                    </div>
+                </div>
+            </div>
             <x-btn-submit />
         </form>
     </div>

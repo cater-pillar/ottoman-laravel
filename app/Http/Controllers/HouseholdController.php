@@ -41,7 +41,7 @@ class HouseholdController extends Controller
         
         $paginated = $households->paginate(50)->withQueryString();
 
- 
+        $request = collect(request());
 
         $sums = [
             'occupation' => $this->getSum($ids,"household_occupation", "income"),
@@ -62,6 +62,7 @@ class HouseholdController extends Controller
             'lands' => $lands,
             'livestocks' => $livestocks,
             'occupations' => $occupations,
+            'request' => $request,
         ]);
     }
 
